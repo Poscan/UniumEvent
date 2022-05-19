@@ -1,5 +1,4 @@
 using Application.Contracts.Authorization;
-using Application.Dto;
 using Application.Dto.Authorization;
 using Application.Exceptions;
 using Microsoft.AspNetCore.Identity;
@@ -19,11 +18,11 @@ public class AuthenticationService : IAuthenticationService
     {
         var user = await _userManager.FindByNameAsync(userName);
         if (user == null)
-            throw new ApiException("Invalid Username or Password");
+            throw new ApiException("Неверный логин или пароль");
         
         var passwordIsCorrect = await _userManager.CheckPasswordAsync(user, password);
         if (passwordIsCorrect == false)
-            throw new ApiException("Invalid Username or Password");
+            throw new ApiException("Неверный логин или пароль");
 
         return new AuthenticationData(user.Id);
     }

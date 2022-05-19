@@ -7,7 +7,7 @@ public static class RulesRegistration
 {
     public static IServiceCollection AddGenerationRules(this IServiceCollection services)
     {
-        services.AddSingleton<BookGenerationRule>();
+        services.AddSingleton<EventGenerationRule>();
 
         return services;
     }

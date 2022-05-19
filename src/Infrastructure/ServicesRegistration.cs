@@ -25,11 +25,11 @@ public static class ServicesRegistration
         services.AddScoped<IAuthorizationService, AuthorizationService>();
         services.AddScoped<IAccountService, AccountService>();
 
-        // var connectionString = configuration.GetConnectionString("DefaultConnection");
-        // services.AddDbContext<ApplicationDbContext>(options => options.UseSqlite(connectionString).UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
-        services.AddDbContext<ApplicationDbContext>(options => options.UseInMemoryDatabase("db")
+        var connectionString = configuration.GetConnectionString("DefaultConnection");
+        services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(connectionString)
                                                                       .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
         services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddErrorDescriber<CustomIdentityErrorDescriber>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
         
@@ -38,7 +38,7 @@ public static class ServicesRegistration
 
         services.AddTransient<IUnitOfWork, UnitOfWork>();
         services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
-        services.AddTransient<IBookRepository, BookRepository>();
+        services.AddTransient<IEventRepository, EventRepository>();
         
         return services;
     }

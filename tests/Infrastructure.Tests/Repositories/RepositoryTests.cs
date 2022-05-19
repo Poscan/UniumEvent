@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using Domain.Common;
 using Domain.Common.Repositories;
 using FluentAssertions;
-using GenerationRules;
 using GenerationRules.Rules;
 using Infrastructure.Persistence;
 using Infrastructure.Persistence.Repositories;

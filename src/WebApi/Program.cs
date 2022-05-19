@@ -18,7 +18,7 @@ public class Program
             {
                 var context = serviceProvider.GetRequiredService<ApplicationDbContext>();
 
-                if (context.Database.IsSqlite())
+                if (context.Database.IsNpgsql())
                 {
                     await context.Database.MigrateAsync();
 

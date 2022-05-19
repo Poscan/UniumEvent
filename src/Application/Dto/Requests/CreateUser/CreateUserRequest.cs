@@ -1,8 +1,13 @@
-namespace Application.Dto.Requests.CreateUser;
+using System.ComponentModel.DataAnnotations;
 
-public class CreateUserRequest
+namespace Application.Dto.Requests.CreateUser
 {
-    public string UserName { get; set; } = null!;
+    public class CreateUserRequest
+    {
+        [Required]
+        public string UserName { get; set; } = null!;
 
-    public string Password { get; set; } = null!;
+        [Required]
+        public string Password { get; set; } = null!;
+    }
 }

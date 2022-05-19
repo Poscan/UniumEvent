@@ -2,7 +2,6 @@ using System.Reflection;
 using FluentValidation.AspNetCore;
 using Mapster;
 using MapsterMapper;
-using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Application;
@@ -13,7 +12,6 @@ public static class ServicesRegistration
     {
         var executingAssembly = Assembly.GetExecutingAssembly();
         
-        services.AddMediatR(executingAssembly);
         services.AddFluentValidationConfiguration(executingAssembly);
         services.AddMapster(executingAssembly);
 

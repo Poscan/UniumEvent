@@ -1,0 +1,60 @@
+$primary: #6eb6f5;
+$red: #f5807a;
+$green: #5bdaa2;
+$orange: #f5b349;
+
+.bg-primary {
+    background: $primary;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+body::-webkit-scrollbar {
+    width: 0;
+    overflow: auto;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+}
+
+a {
+    text-decoration: none;
+    color:inherit;
+}
+
+.center {
+    margin: 0 auto;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.header {
+    font-family: Helvetica;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 36px;
+    line-height: 42px;
+    z-index: 999;
+}
+
+.h-label {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 800;
+    font-size: 24px;
+}
+
+.m-label {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.l-label {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    margin: 0;
+}

@@ -1,8 +1,6 @@
 using Application.Contracts.Authorization;
-using Application.Dto;
 using Application.Dto.Authorization;
 using Application.Wrappers;
-using Microsoft.AspNetCore.Identity;
 
 namespace Infrastructure.Services;
 
