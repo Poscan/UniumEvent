@@ -1,5 +1,6 @@
 using System.Reflection;
-using FluentValidation.AspNetCore;
+using Application.Contracts;
+using Application.Services;
 using Mapster;
 using MapsterMapper;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,23 +13,12 @@ public static class ServicesRegistration
     {
         var executingAssembly = Assembly.GetExecutingAssembly();
         
-        services.AddFluentValidationConfiguration(executingAssembly);
         services.AddMapster(executingAssembly);
+        services.AddScoped<IEventService, EventService>();
 
         return services;
     }
 
-    private static IServiceCollection AddFluentValidationConfiguration(this IServiceCollection services, params Assembly[] assemblies)
-    {
-        services.AddFluentValidation(x =>
-        {
-            x.DisableDataAnnotationsValidation = true;
-            x.RegisterValidatorsFromAssemblies(assemblies);
-        });
-
-        return services;
-    }
-    
     private static IServiceCollection AddMapster(this IServiceCollection services, params Assembly[] assemblies)
     {
         var config = TypeAdapterConfig.GlobalSettings;

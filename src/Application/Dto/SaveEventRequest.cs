@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Application.Features.Events.Commands.SaveEvent;
+namespace Application.Dto;
 
 public class SaveEventRequest
 {

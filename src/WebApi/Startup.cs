@@ -1,7 +1,6 @@
 using Application;
 using Application.Contracts;
 using Infrastructure;
-using Infrastructure.Services;
 using Microsoft.AspNetCore.Authorization;
 using WebApi.Configurations;
 using WebApi.Filters;
@@ -29,7 +28,6 @@ public class Startup
         services.AddApiBehaviorConfiguration();
         services.AddHttpContextAccessor();
         services.AddSingleton<ICurrentUser, CurrentUser>();
-        services.AddScoped<IEventService, EventService>();
         services.AddSingleton<IAuthorizationMiddlewareResultHandler, CustomAuthorizationMiddlewareResultHandler>();
     }
     

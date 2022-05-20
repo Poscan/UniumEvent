@@ -39,7 +39,7 @@ public static class ServicesRegistration
         services.AddTransient<IUnitOfWork, UnitOfWork>();
         services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
         services.AddTransient<IEventRepository, EventRepository>();
-        
+
         return services;
     }
 

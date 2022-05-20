@@ -1,13 +1,12 @@
 using Application.Contracts;
 using Application.Dto;
-using Application.Features.Events.Commands.SaveEvent;
 using Application.Wrappers;
 using Domain.Common;
 using Domain.Common.Repositories;
 using Domain.Entities;
 using MapsterMapper;
 
-namespace Infrastructure.Services;
+namespace Application.Services;
 
 public class EventService : IEventService
 {

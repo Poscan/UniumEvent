@@ -1,6 +1,5 @@
 using Application.Contracts;
 using Application.Dto;
-using Application.Features.Events.Commands.SaveEvent;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using EventsResponse = Application.Wrappers.Response<System.Collections.Generic.IEnumerable<Application.Dto.EventDto>>;

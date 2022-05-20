@@ -1,5 +1,4 @@
 using Application.Dto;
-using Application.Features.Events.Commands.SaveEvent;
 using Application.Wrappers;
 
 namespace Application.Contracts;
