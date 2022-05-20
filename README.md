@@ -4,7 +4,6 @@ Template for a quick start Web API
 ## Technologies
 * [x] .NET 6
 * [x] Entity Framework Core 6
-* [x] Mediatr
 * [x] Mapster
 * [x] Serilog
 * [x] Swagger
