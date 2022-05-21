@@ -13,14 +13,27 @@ const routes: Array<RouteConfig> = [
   {
     path: "/event-page",
     name: "EventPage",
-    component: () =>
-      import("../views/EventPage.vue"),
+    component: () => import("../views/EventPage.vue"),
   },
   {
     path: "/authorize",
     name: "Authorize",
-    component: () =>
-      import("../views/Authorize.vue"),
+    component: () => import("../views/Authorize.vue"),
+  },
+  {
+    path: "/account",
+    name: "Account",
+    component: () => import("../views/Account.vue"),
+    children: [
+      {
+        path: "user-profile",
+        component: () => import("../views/UserProfile.vue"),
+      },
+      {
+        path: "user-events",
+        component: () => import("../views/UserEvents.vue"),
+      },
+    ],
   },
 ];
 

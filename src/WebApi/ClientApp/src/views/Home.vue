@@ -1,17 +1,26 @@
 <template>
   <div id="container">
-    <img id="pointer1" class="box-pointer" src="Arrow.svg" height="64px" />
-    <EventCard pictureName="Gau.svg" subPictureName="Gau.png" id="home" label="ГОРОДСКАЯ АКАДЕМИЯ ЮНИУМ" />
+    <img id="pointer1" class="box-pointer" src="../assets/Arrow.svg" height="64px" />
+    <EventCard :pictureName="pictrure" :subPictureName="subPicture" id="home" label="ГОРОДСКАЯ АКАДЕМИЯ ЮНИУМ" />
   </div>
 </template>
 
 <script lang="ts">
 import { Vue } from "vue-property-decorator";
 import EventCard from "@/components/EventCard.vue";
+import picture from "../assets/Gau.svg";
+import subPicture from "../assets/Gau.png";
 
 export default Vue.extend({
   components: {
     EventCard,
+  },
+
+  data() {
+    return {
+      pictrure: picture,
+      subPicture: subPicture,
+    };
   },
 
   mounted() {
@@ -46,6 +55,12 @@ export default Vue.extend({
           pointerElem.style.left = Math.floor(mouseX) - 32 + "px";
           pointerElem.style.top = Math.floor(mouseY) - 32 + "px";
           pointerElem.style.transform = "rotate(" + degree + "rad)";
+
+          const target = event.target;
+          if (target != null) {
+            const cursor = window.getComputedStyle(target as Element)["cursor"];
+            pointerElem.style.opacity = cursor == "pointer" ? "0" : "1";
+          }
         }
       });
     };

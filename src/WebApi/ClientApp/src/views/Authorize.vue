@@ -22,12 +22,12 @@
           </div>
         </div>
         <div class="authorize-back">
-          <img src="Authorization.svg" width="800px" />
+          <img src="../assets/Authorization.svg" width="800px" />
         </div>
       </div>
       <div class="authorize-page" v-else key="registr">
         <div class="authorize-back">
-          <img src="Registration.svg" height="740px" />
+          <img src="../assets/Registration.svg" height="740px" />
         </div>
         <div class="aleft">
           <div class="authorize-form">
@@ -69,6 +69,7 @@
 </template>
 
 <script lang="ts">
+import router from "@/router";
 import Vue from "vue";
 import AuthService from "../services/AuthService";
 
@@ -105,17 +106,16 @@ export default Vue.extend({
 
         this.error = result.data.isSuccessful ? "" : result.data.Errors[0].Message;
       } else {
-        result = (await AuthService.createAccount(this.login, this.password)) as any;
-        this.$store.state.user.lastName = this.lastName;
-        this.$store.state.user.firstName = this.firstName;
-        this.$store.state.user.patrName = this.patrName;
+        result = (await AuthService.createAccount(this.login, this.password, this.lastName, this.firstName, this.patrName)) as any;
 
         this.error = result.data.isSuccessful ? "" : result.data.errors[0].message;
       }
 
       if (result.data.isSuccessful) {
-        localStorage.setItem("accessToken", result.data.data.accessToken);
-        localStorage.setItem("refreshToken", result.data.data.refreshToken);
+        sessionStorage.setItem("accessToken", result.data.data.accessToken.token);
+        sessionStorage.setItem("refreshToken", result.data.data.refreshToken.token);
+
+        this.$router.push("/account/user-profile");
       }
     },
   },
@@ -124,10 +124,6 @@ export default Vue.extend({
     isAuthorize() {
       this.error = "";
     },
-  },
-
-  mounted() {
-    console.log(this.$route.name);
   },
 });
 </script>

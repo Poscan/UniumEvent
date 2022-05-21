@@ -1,6 +1,6 @@
 <template>
   <div class="event-page">
-    <preview-section pictureUrl="Gau.svg" label="ГОРОДСКАЯ АКАДЕМИЯ ЮНИУМ" />
+    <preview-section :pictureUrl="image" label="ГОРОДСКАЯ АКАДЕМИЯ ЮНИУМ" />
     <section class="text-wrap" id="first">
       <TextLine>
         <template v-slot:header> 1 СМЕНА </template>
@@ -23,7 +23,7 @@
     </section>
 
     <section class="site-wrap">
-      <img src="First.svg" class="section-image" />
+      <img src="../assets/First.svg" class="section-image" />
     </section>
 
     <section class="text-wrap">
@@ -47,7 +47,7 @@
     </section>
 
     <section class="site-wrap">
-      <img src="Second.svg" class="section-image" />
+      <img src="../assets/Second.svg" class="section-image" />
     </section>
 
     <section class="text-wrap">
@@ -71,10 +71,10 @@
     </section>
 
     <section class="site-wrap">
-      <img src="Third.svg" class="section-image" />
+      <img src="../assets/Third.svg" class="section-image" />
     </section>
 
-    <router-link to="/" class="subscribe">ЗАПИСАТЬСЯ</router-link>
+    <router-link to="/authorize" class="subscribe">ЗАПИСАТЬСЯ</router-link>
   </div>
 </template>
 
@@ -82,11 +82,18 @@
 import Vue from "vue";
 import PreviewSection from "@/components/PreviewSection.vue";
 import TextLine from "@/components/TextLine.vue";
+import image from "../assets/Gau.svg";
 
 export default Vue.extend({
   components: {
     PreviewSection,
     TextLine,
+  },
+
+  data() {
+    return {
+      image: image,
+    };
   },
 });
 </script>

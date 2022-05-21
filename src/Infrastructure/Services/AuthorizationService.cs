@@ -40,6 +40,6 @@ public class AuthorizationService : IAuthorizationService
         var accessToken = _tokenFactory.CreateAccessToken(authenticationData.UserId);
         var refreshToken = _tokenFactory.CreateRefreshToken(authenticationData.UserId);
 
-        return new AuthorizationData(accessToken, refreshToken);
+        return new AuthorizationData(accessToken, refreshToken, authenticationData.UserId);
     }
 }

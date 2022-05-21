@@ -15,6 +15,7 @@ public static class ServicesRegistration
         
         services.AddMapster(executingAssembly);
         services.AddScoped<IEventService, EventService>();
+        services.AddScoped<IClientService, ClientService>();
 
         return services;
     }

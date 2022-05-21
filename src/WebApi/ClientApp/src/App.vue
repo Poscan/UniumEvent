@@ -1,16 +1,37 @@
 <template>
   <div id="app">
     <router-link to="/">
-      <img src="Logo.svg" class="logo" />
+      <img src="./assets/Logo.svg" class="logo" />
     </router-link>
     <div id="nav">
-      <router-link to="/authorize" class="m-label" v-if="$route.name != 'Authorize'"><span class="nav-label">ВОЙТИ</span></router-link>
+      <div v-if="email">
+        <router-link to="/account/user-profile" class="m-label">
+          <span class="nav-label">{{ email }}</span>
+        </router-link>
+      </div>
+      <div v-else>
+        <router-link to="/authorize" class="m-label" v-if="$route.name != 'Authorize'"><span class="nav-label">ВОЙТИ</span></router-link>
+      </div>
     </div>
     <transition name="fade">
       <router-view />
     </transition>
   </div>
 </template>
+
+<script lang="ts">
+import Vue from "vue";
+
+export default Vue.extend({
+  computed: {
+    email() {
+      const email = this.$store.state.client?.email;
+
+      return email;
+    },
+  },
+});
+</script>
 
 <style scoped lang="scss">
 #nav {

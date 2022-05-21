@@ -30,15 +30,27 @@ public class ErrorHandlerMiddleware
             response.StatusCode = StatusCodes.Status200OK;
             response.ContentType = MediaTypeNames.Application.Json;
 
-            var errors = exception switch
+            IEnumerable<ResponseError>? errors;
+            switch (exception)
             {
-                ApiException e => ApiExceptionHandler(e),
-                EntityNotFoundException e => EntityNotFoundExceptionHandler(e),
-                ValidationException e => ValidationExceptionHandler(e),
-                UnauthorizedAccessException e => UnauthorizedAccessExceptionHandler(e),
-                _ => UnknownExceptionHandler(exception)
-            };
-            
+                case ApiException e:
+                    errors = ApiExceptionHandler(e);
+                    break;
+                case EntityNotFoundException e:
+                    errors = EntityNotFoundExceptionHandler(e);
+                    break;
+                case ValidationException e:
+                    errors = ValidationExceptionHandler(e);
+                    break;
+                case UnauthorizedAccessException e:
+                    response.StatusCode = 401;
+                    errors = UnauthorizedAccessExceptionHandler(e);
+                    break;
+                default:
+                    errors = UnknownExceptionHandler(exception);
+                    break;
+            }
+
             var failResponse = Response.Fail<string>(errors);
             var serializedResponse = JsonSerializer.Serialize(failResponse);
             
