@@ -31,7 +31,6 @@
       "commandName": "Docker",
       "launchBrowser": true,
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
-      "DockerfileRunArguments": "\"ConnectionStrings__default=.com;Port/=5432;Database/=daqt4ghivqrea3;Username/=tyutubixvpegee;Password/=420000d402bb54e446c4a08351b4221310520de112aba9e4ddde478d6d6319fb\"",
       "publishAllPorts": true,
       "useSSL": true
     }
