@@ -29,7 +29,7 @@ public class Program
             catch (Exception exception)
             {
                 logger.LogError(exception, "An error occurred during database migration");
-                
+
                 throw;
             }
         }
@@ -39,6 +39,12 @@ public class Program
 
     private static IHostBuilder CreateHostBuilder(string[] args)
     {
-        return Host.CreateDefaultBuilder(args).ConfigureWebHostDefaults(builder => builder.UseStartup<Startup>());
+        return Host.CreateDefaultBuilder(args)
+                   .ConfigureAppConfiguration((hostingContext, config) =>
+                   {
+                       config.AddJsonFile("appsettings.json", true)
+                           .AddJsonFile($"appsettings.{hostingContext.HostingEnvironment.EnvironmentName}.json", true)
+                           .AddEnvironmentVariables();
+                   }).ConfigureWebHostDefaults(builder => builder.UseStartup<Startup>());
     }
 }

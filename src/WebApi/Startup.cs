@@ -29,6 +29,7 @@ public class Startup
         services.AddHttpContextAccessor();
         services.AddSingleton<ICurrentUser, CurrentUser>();
         services.AddSingleton<IAuthorizationMiddlewareResultHandler, CustomAuthorizationMiddlewareResultHandler>();
+
     }
     
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -42,6 +43,10 @@ public class Startup
 
         app.UseMiddleware<ErrorHandlerMiddleware>();
         app.UseHttpsRedirection();
+        app.UseHttpsRedirection();
+        app.UseDefaultFiles();
+        app.UseStaticFiles();
+
         app.UseRouting();
         app.UseAuthentication();
         app.UseAuthorization();

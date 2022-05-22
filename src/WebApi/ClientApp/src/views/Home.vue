@@ -84,6 +84,6 @@ export default Vue.extend({
 .box-pointer {
   position: absolute;
   pointer-events: none;
-  transition: all 0.1s ease;
+  transition: all 0.2s ease;
 }
 </style>
