@@ -243,3 +243,4 @@ src/WebUI/ClientApp/package-lock.json
 *.js
 *.js.map
 !.eslintrc.js
+!*.config.js
