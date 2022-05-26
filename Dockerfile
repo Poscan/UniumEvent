@@ -5,10 +5,6 @@ WORKDIR /src
 COPY src/WebApi/ClientApp .
 RUN npm install  && npm run build --prod
 
-FROM base AS finalnode
-WORKDIR /app
-COPY --from=node /wwwroot ../wwwroot
-
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /app
 EXPOSE 80
