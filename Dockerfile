@@ -7,7 +7,7 @@ RUN npm install && npm run build
 
 FROM base AS finalnode
 WORKDIR /app
-COPY --from=node /wwwroot ../wwwroot
+COPY --from=node ./wwwroot ../wwwroot
 
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /app
