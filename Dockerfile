@@ -5,7 +5,7 @@ WORKDIR /src
 COPY src/WebApi/ClientApp .
 RUN npm install && npm run build
 
-FROM base AS finalnode
+FROM node AS finalnode
 WORKDIR /app
 COPY --from=node ./wwwroot ../wwwroot
 
@@ -32,7 +32,6 @@ RUN dotnet publish "WebApi.csproj" -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 ENV default=Server=ec2-3-217-219-146.compute-1.amazonaws.com;Port=5432;Database=daqt4ghivqrea3;Username=tyutubixvpegee;Password=420000d402bb54e446c4a08351b4221310520de112aba9e4ddde478d6d6319fb
-
 COPY --from=publish /app/publish .
 COPY --from=node /wwwroot ./wwwroot
 COPY --from=node /wwwroot ../wwwroot
