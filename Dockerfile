@@ -1,6 +1,6 @@
 #See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
-FROM node:14-alpine as node
+FROM node:16-alpine as node
 WORKDIR /src
 COPY src/WebApi/ClientApp .
 RUN npm install && npm run build
