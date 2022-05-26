@@ -86,4 +86,10 @@ export default Vue.extend({
   pointer-events: none;
   transition: all 0.2s ease;
 }
+
+@media (max-width: 768px) {
+  .box-pointer {
+    display: none;
+  }
+}
 </style>

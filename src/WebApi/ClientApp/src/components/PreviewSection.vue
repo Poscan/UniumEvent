@@ -2,7 +2,7 @@
   <div class="previewSection" ref="prev">
     <div class="center st" :style="{ clip: 'rect(' + y + 'px, ' + (x + width) + 'px, ' + (y + height) + 'px, ' + x + 'px)' }">
       <div class="img">
-        <img :src="pictureUrl" width="650" height="650" />
+        <img :src="pictureUrl" id="preview-image" alt="preview" />
       </div>
       <p class="text text-in-block">{{ label }}</p>
     </div>
@@ -25,6 +25,7 @@ export default Vue.extend({
       y: 0,
       width: 650,
       height: 650,
+      imageHeight: 650,
     };
   },
 
@@ -37,11 +38,11 @@ export default Vue.extend({
 
       if (y > heightSection && this.y + this.height == heightSection) return;
 
-      var k = (heightSection - 650) / heightSection;
-      this.height = k * y + 650;
+      let k = (heightSection - this.imageHeight) / heightSection;
+      this.height = k * y + this.imageHeight;
 
-      k = (widthSection - 650) / heightSection;
-      this.width = k * y + 650;
+      k = (widthSection - this.imageHeight) / heightSection;
+      this.width = k * y + this.imageHeight;
 
       this.x = widthSection / 2 - this.width / 2;
       this.y = heightSection / 2 - this.height / 2;
@@ -51,12 +52,35 @@ export default Vue.extend({
   mounted() {
     document.onreadystatechange = () => {
       if (document.readyState == "complete") {
+        const height = document.getElementById("preview-image")?.clientHeight;
+
+        this.imageHeight = height ?? 650;
+        this.height = height ?? 650;
+        this.width = height ?? 650;
         this.onScroll();
       }
     };
 
+    const height = document.getElementById("preview-image")?.clientHeight;
+
+    this.imageHeight = height ?? 650;
+    this.height = height ?? 650;
+    this.width = height ?? 650;
     this.onScroll();
     window.addEventListener("scroll", this.onScroll);
+
+    window.addEventListener(
+      "resize",
+      () => {
+        const height = document.getElementById("preview-image")?.clientHeight;
+
+        this.imageHeight = height ?? 650;
+        this.height = height ?? 650;
+        this.width = height ?? 650;
+        this.onScroll();
+      },
+      true,
+    );
   },
 
   destroyed() {
@@ -85,6 +109,38 @@ export default Vue.extend({
   z-index: 0;
 }
 
+#preview-image {
+  --size: 650px;
+  width: var(--size);
+}
+
+@media (max-width: 500px) {
+  #preview-image {
+    --size: 100%;
+  }
+}
+
+@media (min-width: 500px) and (max-width: 768px) {
+  #preview-image {
+    --size: 500px;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  #preview-image {
+    --size: 550px;
+  }
+}
+@media (min-width: 991px) and (max-width: 1199px) {
+  #preview-image {
+    --size: 600px;
+  }
+}
+@media (min-width: 1200px) {
+  #preview-image {
+    --size: 650px;
+  }
+}
+
 .img {
   position: absolute;
   left: 50%;
@@ -101,18 +157,18 @@ export default Vue.extend({
   // font-family: "Roboto", sans-serif;
   color: black;
   font-weight: 900;
-  font-size: 150px;
-  line-height: 236px;
+  font-size: calc((100vw - 480px) / (1904 - 480) * (150 - 50) + 50px);
+  line-height: calc((100vw - 480px) / (1904 - 480) * (236 - 100) + 100px);
   text-align: center;
   letter-spacing: 0.045em;
-  padding: 0 40px;
+  padding: 0 10px;
 }
 
 .text-in-block {
   top: 50%;
   transform: translateY(-50%);
   -webkit-text-fill-color: transparent;
-  -webkit-text-stroke: 8px burlywood;
+  -webkit-text-stroke: calc((100vw - 480px) / (1904 - 480) * (8 - 2) + 2px) burlywood;
   color: burlywood;
   z-index: 0;
   position: absolute;
@@ -120,7 +176,7 @@ export default Vue.extend({
 
 .text-out-block {
   -webkit-text-fill-color: transparent;
-  -webkit-text-stroke: 8px black;
+  -webkit-text-stroke: calc((100vw - 480px) / (1904 - 480) * (8 - 2) + 2px) black;
   top: 50%;
   transform: translateY(-50%);
   z-index: -2;
