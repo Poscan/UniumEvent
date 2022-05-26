@@ -3,7 +3,7 @@
 FROM node:16-alpine as node
 WORKDIR /src
 COPY src/WebApi/ClientApp .
-RUN npm install  && npm run build
+RUN npm install  && npm run build --prod
 
 FROM base AS finalnode
 WORKDIR /app
