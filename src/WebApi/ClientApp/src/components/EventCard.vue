@@ -4,7 +4,7 @@
       <img :src="pictureName" width="650" height="650" />
       <transition name="sub-anim2">
         <div v-if="show" class="image-container">
-          <img id="sub" :src="subPictureName" width="650" height="650" />
+          <img id="sub" class="event-image" :src="subPictureName" width="650" height="650" />
         </div>
       </transition>
     </div>
@@ -35,17 +35,57 @@ export default Vue.extend({
 <style lang="scss">
 @import "../../public/main";
 
+.card-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .card-container {
   padding-top: 110px;
-  width: 650px;
-  height: 650px;
+  width: var(--size);
+  height: var(--size);
   overflow: hidden;
 }
 
 .image-container {
+  display: none;
+  margin-top: calc(-1 * var(--size) - 4px);
   overflow: hidden;
-  margin-top: -654px;
-  height: 650px;
+  height: var(--size);
+}
+
+.event-image {
+  width: var(--size);
+  height: var(--size);
+}
+
+@media (max-width: 500px) {
+  .card-container {
+    --size: 100%;
+  }
+}
+
+@media (min-width: 500px) and (max-width: 768px) {
+  .card-container {
+    --size: 500px;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .card-container {
+    --size: 550px;
+  }
+}
+@media (min-width: 991px) and (max-width: 1199px) {
+  .card-container {
+    --size: 600px;
+  }
+}
+@media (min-width: 1200px) {
+  .card-container {
+    --size: 650px;
+  }
 }
 
 .sub-anim2-enter-active {
