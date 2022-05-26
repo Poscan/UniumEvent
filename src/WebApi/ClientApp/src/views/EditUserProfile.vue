@@ -39,6 +39,7 @@ import Vue from "vue";
 export default Vue.extend({
   computed: {
     localeDate(): string {
+      console.log("temp");
       return this.client && this.client.birthday ? new Date(this.client.birthday).toLocaleDateString() : "";
     },
 
