@@ -39,7 +39,8 @@ export default Vue.extend({
         pixels = margin + 21;
       }
 
-      var element = document.getElementById("home")?.getBoundingClientRect();
+      var home = document.getElementById("home");
+      var element = home ? home.getBoundingClientRect() : null;
       var pX = ((element?.left ?? 0) + (element?.right ?? 0)) / 2;
       var pY = (element?.bottom ?? 0) - pixels;
 
