@@ -1,1 +1,32 @@
-{"name":"client-app","version":"0.1.0","private":true,"scripts":{"serve":"vue-cli-service serve","build":"vue-cli-service build","lint":"vue-cli-service lint","update-packages":"node wipe-dependencies.js && rm -rf node_modules && npm update --save-dev && npm update --save"},"dependencies":{"axios":"*","core-js":"*","vue":"2.*","vue-class-component":"*","vue-property-decorator":"*","vue-router":"3.*","vuex":"3.*"},"devDependencies":{"@typescript-eslint/eslint-plugin":"*","@typescript-eslint/parser":"*","@vue/cli-plugin-babel":"*","@vue/cli-plugin-eslint":"*","@vue/cli-plugin-router":"*","@vue/cli-plugin-typescript":"*","@vue/cli-plugin-vuex":"*","@vue/cli-service":"*","@vue/eslint-config-prettier":"*","@vue/eslint-config-typescript":"*","eslint":"*","eslint-plugin-prettier":"*","eslint-plugin-vue":"*","prettier":"*","sass":"*","sass-loader":"*","typescript":"*","vue-template-compiler":"*"}}
+{
+  "name": "client-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "update-packages": "node wipe-dependencies.js && rm -rf node_modules && npm update --save-dev && npm update --save"
+  },
+  "dependencies": {
+    "axios": "*",
+    "core-js": "*",
+    "vue": "2.*",
+    "vue-class-component": "*",
+    "vue-property-decorator": "*",
+    "vue-router": "3.*",
+    "vuex": "3.*"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "*",
+    "@vue/cli-plugin-router": "*",
+    "@vue/cli-plugin-typescript": "*",
+    "@vue/cli-plugin-vuex": "*",
+    "@vue/cli-service": "*",
+    "prettier": "*",
+    "sass": "*",
+    "sass-loader": "*",
+    "typescript": "*",
+    "vue-template-compiler": "*"
+  }
+}

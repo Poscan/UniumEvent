@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    "target": "ES2021",
+    "module": "es2020",
     "strict": true,
     "jsx": "preserve",
     "importHelpers": true,
@@ -21,7 +23,8 @@
     "lib": [
       "dom",
       "dom.iterable",
-      "scripthost"
+      "scripthost",
+      "ES2021"
     ]
   },
   "include": [
