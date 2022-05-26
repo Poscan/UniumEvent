@@ -30,7 +30,7 @@ RUN dotnet build "WebApi.csproj" -c Release -o /app/build
 
 FROM build AS publish
 RUN dotnet publish "WebApi.csproj" -c Release -o /app/publish
-COPY --from=node ./ClientApp/wwwroot /app/wwwroot
+COPY --from=node ./wwwroot /app/wwwroot
 
 
 FROM base AS final
