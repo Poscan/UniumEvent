@@ -25,7 +25,7 @@ public static class ServicesRegistration
         services.AddScoped<IAuthorizationService, AuthorizationService>();
         services.AddScoped<IAccountService, AccountService>();
 
-        var connectionString = configuration.GetConnectionString("default");
+        var connectionString = Environment.GetEnvironmentVariable("default");
         services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(connectionString)
                                                                       .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
         services.AddIdentity<IdentityUser, IdentityRole>()
