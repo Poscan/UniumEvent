@@ -1,10 +1,10 @@
 <template>
   <div class="card-wrap">
     <div class="card-container center">
-      <img :src="pictureName" width="650" height="650" />
+      <img class="event-image" :src="pictureName" />
       <transition name="sub-anim2">
         <div v-if="show" class="image-container">
-          <img id="sub" class="event-image" :src="subPictureName" width="650" height="650" />
+          <img class="event-image" id="sub" :src="subPictureName" />
         </div>
       </transition>
     </div>
@@ -88,16 +88,22 @@ export default Vue.extend({
   }
 }
 
-.sub-anim2-enter-active {
-  transition: all 1s cubic-bezier(0.65, 0, 0.35, 1);
-}
+@media (min-width: 768px) {
+  .image-container {
+    display: block;
+  }
 
-.sub-anim2-leave-active {
-  transition: all 1s cubic-bezier(0.65, 0, 0.35, 1);
-}
+  .sub-anim2-enter-active {
+    transition: all 1s cubic-bezier(0.65, 0, 0.35, 1);
+  }
 
-.sub-anim2-enter,
-.sub-anim2-leave-to {
-  height: 0;
+  .sub-anim2-leave-active {
+    transition: all 1s cubic-bezier(0.65, 0, 0.35, 1);
+  }
+
+  .sub-anim2-enter,
+  .sub-anim2-leave-to {
+    height: 0;
+  }
 }
 </style>

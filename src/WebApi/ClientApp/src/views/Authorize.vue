@@ -15,19 +15,19 @@
               <span class="placeholder">Введите Пароль</span>
             </label>
 
-            <label class="register" style="color: red" v-if="error.length > 0">{{ error }}</label>
+            <label class="registr" style="color: red" v-if="error.length > 0">{{ error }}</label>
 
             <button class="submit" :disabled="isNextStep" @click="authorize">Продолжить</button>
-            <label class="register">У вас нет аккаунта? <a @click="isAuthorize = false" class="anotherPage">Зарегистрируйтесь</a></label>
+            <label class="registr">У вас нет аккаунта? <a @click="isAuthorize = false" class="anotherPage">Зарегистрируйтесь</a></label>
           </div>
         </div>
         <div class="authorize-back">
-          <img src="../assets/Authorization.svg" alt="authorize" width="800px" />
+          <img src="../assets/Authorization.svg" width="800px" />
         </div>
       </div>
-      <div class="authorize-page" v-else key="register">
+      <div class="authorize-page" v-else key="registr">
         <div class="authorize-back">
-          <img src="../assets/Registration.svg" alt="register" height="740px" />
+          <img src="../assets/Registration.svg" height="740px" />
         </div>
         <div class="aleft">
           <div class="authorize-form">
@@ -57,10 +57,10 @@
               <span class="placeholder">Введите Пароль</span>
             </label>
 
-            <label class="register" style="color: red" v-if="error.length > 0">{{ error }}</label>
+            <label class="registr" style="color: red" v-if="error.length > 0">{{ error }}</label>
 
             <button class="submit" :disabled="isNextStep" @click="authorize">Продолжить</button>
-            <label class="register">У вас есть аккаунт? <a @click="isAuthorize = true" class="anotherPage">Войти</a></label>
+            <label class="registr">У вас есть аккаунт? <a @click="isAuthorize = true" class="anotherPage">Войти</a></label>
           </div>
         </div>
       </div>
@@ -69,6 +69,7 @@
 </template>
 
 <script lang="ts">
+import router from "@/router";
 import Vue from "vue";
 import AuthService from "../services/AuthService";
 
@@ -87,7 +88,7 @@ export default Vue.extend({
 
   computed: {
     isNextStep(): boolean {
-      let result = this.login.length > 0 && this.password.length > 0;
+      var result = this.login.length > 0 && this.password.length > 0;
 
       if (!this.isAuthorize) {
         result = result && this.lastName.length > 0 && this.firstName.length > 0;
@@ -99,7 +100,7 @@ export default Vue.extend({
 
   methods: {
     async authorize() {
-      let result = null;
+      var result = null;
       if (this.isAuthorize) {
         result = (await AuthService.login(this.login, this.password)) as any;
 
@@ -114,7 +115,7 @@ export default Vue.extend({
         sessionStorage.setItem("accessToken", result.data.data.accessToken.token);
         sessionStorage.setItem("refreshToken", result.data.data.refreshToken.token);
 
-        await this.$router.push("/account/user-profile");
+        this.$router.push("/account/user-profile");
       }
     },
   },
@@ -168,6 +169,21 @@ export default Vue.extend({
   align-items: center;
 }
 
+@media (max-width: 956px) {
+  .authorize-back {
+    display: none;
+  }
+
+  .aleft {
+    width: 100%;
+  }
+
+  .authorize-form {
+    width: 100%;
+    padding: 40px 30px;
+  }
+}
+
 .anotherPage {
   color: #6eb6f5;
 
@@ -200,7 +216,7 @@ export default Vue.extend({
   }
 }
 
-.register {
+.registr {
   margin-top: 20px;
   margin-bottom: 5px;
 }

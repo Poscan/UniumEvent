@@ -25,6 +25,14 @@
       <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="ClientApp\.eslintrc.js" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Remove="ClientApp\package-lock.json" />
+    </ItemGroup>
+
     <ProjectExtensions><VisualStudio><UserProperties properties_4launchsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 
 </Project>

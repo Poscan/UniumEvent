@@ -108,9 +108,29 @@ export default Vue.extend({
 }
 
 .site-wrap {
-  padding: 60px 300px;
   margin: 0 auto;
   background: rgb(30, 100, 130);
+}
+
+@media (max-width: 768px) {
+  .site-wrap {
+    padding: 60px 30px;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .site-wrap {
+    padding: 60px 100px;
+  }
+}
+@media (min-width: 991px) and (max-width: 1199px) {
+  .site-wrap {
+    padding: 60px 200px;
+  }
+}
+@media (min-width: 1200px) {
+  .site-wrap {
+    padding: 60px 300px;
+  }
 }
 
 .section-image {

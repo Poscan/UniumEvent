@@ -35,11 +35,15 @@
 <script lang="ts">
 import Client from "@/services/models/Client";
 import Vue from "vue";
+import InputAccount from "@/components/Input.vue";
 
 export default Vue.extend({
+  components: {
+    InputAccount,
+  },
+
   computed: {
     localeDate(): string {
-      console.log("temp");
       return this.client && this.client.birthday ? new Date(this.client.birthday).toLocaleDateString() : "";
     },
 

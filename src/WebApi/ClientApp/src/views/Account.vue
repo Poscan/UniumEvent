@@ -12,20 +12,20 @@
           {{ client.lastName }}<br />
           {{ client.firstName }}
         </div>
-        <div><img src="../assets/ManAvatar.svg" class="avatar" alt="avatar" /></div>
+        <div><img src="../assets/ManAvatar.svg" class="avatar" /></div>
       </div>
       <br />
       <div class="account-sidebar">
         <router-link
           to="/account/user-profile"
-          :class="['account-sidebar-item', 'l-label', { select: $router.currentRoute.path === '/account/user-profile' }]"
+          :class="['account-sidebar-item', 'l-label', { select: $router.currentRoute.path == '/account/user-profile' }]"
         >
           Информация о пользователе
         </router-link>
         <router-link
           hidden
           to="/account/user-events"
-          :class="['account-sidebar-item', 'l-label', { select: $router.currentRoute.path === '/account/user-events' }]"
+          :class="['account-sidebar-item', 'l-label', { select: $router.currentRoute.path == '/account/user-events' }]"
         >
           События пользователя
         </router-link>
@@ -47,7 +47,7 @@ export default Vue.extend({
   },
 
   async mounted() {
-    const client = (await ClientService.getCurrentUser()) as any;
+    var client = (await ClientService.getCurrentUser()) as any;
 
     if (client.data) {
       this.client = new Client(client.data.data);
@@ -104,6 +104,7 @@ export default Vue.extend({
 .account-card {
   display: flex;
   justify-content: space-between;
+  flex-grow: 20px;
   padding: 20px;
   border: 2px solid #ddd;
   border-radius: 3px;

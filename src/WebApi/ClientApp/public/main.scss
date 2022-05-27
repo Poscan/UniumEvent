@@ -35,26 +35,29 @@ a {
     font-family: Helvetica;
     font-style: normal;
     font-weight: 900;
-    font-size: 36px;
+    font-size: calc( (100vw - 480px)/(1280 - 480) * (32 - 20) + 20px);
     line-height: 42px;
     z-index: 999;
 }
 
+
+
 .h-label {
     font-family: "Open Sans", sans-serif;
     font-weight: 800;
-    font-size: 24px;
+    font-size: calc( (100vw - 480px)/(1280 - 480) * (24 - 16) + 16px);
 }
 
 .m-label {
     font-family: "Open Sans", sans-serif;
     font-weight: 600;
-    font-size: 20px;
+    font-size: calc( (100vw - 480px)/(1280 - 480) * (20 - 12) + 12px);
 }
 
 .l-label {
     font-family: "Open Sans", sans-serif;
     font-weight: 400;
+    font-size: calc( (100vw - 480px)/(1280 - 480) * (16 - 8) + 8px);
     font-size: 16px;
     margin: 0;
 }

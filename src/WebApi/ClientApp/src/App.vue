@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <router-link to="/">
-      <img src="./assets/Logo.svg" class="logo" />
+      <img src="./assets/Logo.svg" class="logo" id="logo" />
+      <img src="./assets/LogoMobile.svg" class="logo" id="logo-mobile" />
     </router-link>
     <div id="nav">
       <div v-if="email">
@@ -56,10 +57,29 @@ export default Vue.extend({
 }
 
 .logo {
-  width: 300px;
+  height: 86px;
   position: absolute;
   top: 20px;
   left: 40px;
   z-index: 999;
+}
+
+@media (max-width: 768px) {
+  #logo-mobile {
+    display: block;
+  }
+
+  #logo {
+    display: none;
+  }
+}
+@media (min-width: 768px) {
+  #logo-mobile {
+    display: none;
+  }
+
+  #logo {
+    display: block;
+  }
 }
 </style>

@@ -2,7 +2,7 @@
   <div class="previewSection" ref="prev">
     <div class="center st" :style="{ clip: 'rect(' + y + 'px, ' + (x + width) + 'px, ' + (y + height) + 'px, ' + x + 'px)' }">
       <div class="img">
-        <img :src="pictureUrl" id="preview-image" alt="preview" />
+        <img :src="pictureUrl" id="preview-image" />
       </div>
       <p class="text text-in-block">{{ label }}</p>
     </div>
@@ -38,7 +38,7 @@ export default Vue.extend({
 
       if (y > heightSection && this.y + this.height == heightSection) return;
 
-      let k = (heightSection - this.imageHeight) / heightSection;
+      var k = (heightSection - this.imageHeight) / heightSection;
       this.height = k * y + this.imageHeight;
 
       k = (widthSection - this.imageHeight) / heightSection;
@@ -52,7 +52,7 @@ export default Vue.extend({
   mounted() {
     document.onreadystatechange = () => {
       if (document.readyState == "complete") {
-        const height = document.getElementById("preview-image")?.clientHeight;
+        var height = document.getElementById("preview-image")?.clientHeight;
 
         this.imageHeight = height ?? 650;
         this.height = height ?? 650;
@@ -61,7 +61,7 @@ export default Vue.extend({
       }
     };
 
-    const height = document.getElementById("preview-image")?.clientHeight;
+    var height = document.getElementById("preview-image")?.clientHeight;
 
     this.imageHeight = height ?? 650;
     this.height = height ?? 650;
@@ -72,7 +72,7 @@ export default Vue.extend({
     window.addEventListener(
       "resize",
       () => {
-        const height = document.getElementById("preview-image")?.clientHeight;
+        var height = document.getElementById("preview-image")?.clientHeight;
 
         this.imageHeight = height ?? 650;
         this.height = height ?? 650;

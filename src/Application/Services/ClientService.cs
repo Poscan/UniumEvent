@@ -10,7 +10,8 @@ namespace Application.Services;
 
 public class ClientService : IClientService
 {
-    public ClientService(IClientRepository clientRepository, IUnitOfWork unitOfWork, IMapper mapper, ICurrentUser currentUser)
+    public ClientService(IClientRepository clientRepository, IUnitOfWork unitOfWork, IMapper mapper,
+        ICurrentUser currentUser)
     {
         _clientRepository = clientRepository ?? throw new ArgumentNullException(nameof(clientRepository));
         _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));

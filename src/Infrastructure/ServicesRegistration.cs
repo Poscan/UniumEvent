@@ -32,7 +32,7 @@ public static class ServicesRegistration
                 .AddErrorDescriber<CustomIdentityErrorDescriber>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
-        
+
         services.AddJwtSettings(configuration, out var jwtSettings);
         services.AddJwtTokenAuthentication(jwtSettings);
 
@@ -50,10 +50,10 @@ public static class ServicesRegistration
         configuration.Bind(nameof(JwtSettings), jwtSettings);
 
         services.AddSingleton(jwtSettings);
-        
+
         return services;
     }
-    
+
     private static IServiceCollection AddJwtTokenAuthentication(this IServiceCollection services, JwtSettings jwtSettings)
     {
         services.AddAuthentication(options =>
