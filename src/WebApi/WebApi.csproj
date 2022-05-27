@@ -26,11 +26,47 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Remove="ClientApp\.eslintrc.js" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Content Remove="ClientApp\package-lock.json" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\app~d0ae3f07.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\chunk-0398a150.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\chunk-1677ada8.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\chunk-59c82198.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\Arrow.svg" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\Authorization.svg" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\First.svg" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\Gau.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\Gau.svg" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\Logo.svg" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\ManAvatar.svg" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\Registration.svg" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\Second.svg" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\Third.svg" />
+      <_ContentIncludedByDefault Remove="wwwroot\index.html" />
+      <_ContentIncludedByDefault Remove="wwwroot\js\app~d0ae3f07.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js\app~d0ae3f07.js.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\js\chunk-0398a150.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js\chunk-0398a150.js.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\js\chunk-1677ada8.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js\chunk-1677ada8.js.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\js\chunk-2d0cb6c9.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js\chunk-2d0cb6c9.js.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\js\chunk-2d0cf6b4.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js\chunk-2d0cf6b4.js.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\js\chunk-59c82198.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js\chunk-59c82198.js.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\js\chunk-vendors~253ae210.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js\chunk-vendors~253ae210.js.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\js\chunk-vendors~7dcdd765.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js\chunk-vendors~7dcdd765.js.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\js\chunk-vendors~b58f7129.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js\chunk-vendors~b58f7129.js.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\js\chunk-vendors~d2305125.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js\chunk-vendors~d2305125.js.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\js\chunk-vendors~d939e436.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js\chunk-vendors~d939e436.js.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\js\chunk-vendors~fdc6512a.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\js\chunk-vendors~fdc6512a.js.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\legacy-assets-index.html.json" />
+      <_ContentIncludedByDefault Remove="wwwroot\main.scss" />
     </ItemGroup>
 
     <ProjectExtensions><VisualStudio><UserProperties properties_4launchsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
