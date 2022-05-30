@@ -45,19 +45,18 @@ a {
 .h-label {
     font-family: "Open Sans", sans-serif;
     font-weight: 800;
-    font-size: calc( (100vw - 480px)/(1280 - 480) * (24 - 16) + 16px);
+    font-size: calc( (100vw - 480px)/(1920 - 480) * (24 - 16) + 16px);
 }
 
 .m-label {
     font-family: "Open Sans", sans-serif;
     font-weight: 600;
-    font-size: calc( (100vw - 480px)/(1280 - 480) * (20 - 12) + 12px);
+    font-size: calc( (100vw - 480px)/(1920 - 480) * (20 - 12) + 12px);
 }
 
 .l-label {
     font-family: "Open Sans", sans-serif;
     font-weight: 400;
-    font-size: calc( (100vw - 480px)/(1280 - 480) * (16 - 8) + 8px);
-    font-size: 16px;
+    font-size: calc( (100vw - 480px)/(1920 - 480) * (16 - 8) + 8px);
     margin: 0;
 }

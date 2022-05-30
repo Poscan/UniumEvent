@@ -59,7 +59,7 @@ export default Vue.extend({
 
 <style lang="scss">
 .account-wrap {
-  margin: 130px 340px;
+  margin: 130px 340px 0 340px;
   display: grid;
   gap: 20px;
   grid-template-columns: auto 400px;
@@ -104,7 +104,7 @@ export default Vue.extend({
 .account-card {
   display: flex;
   justify-content: space-between;
-  flex-grow: 20px;
+  flex-grow: 20;
   padding: 20px;
   border: 2px solid #ddd;
   border-radius: 3px;

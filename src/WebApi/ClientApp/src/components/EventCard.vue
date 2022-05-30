@@ -61,6 +61,17 @@ export default Vue.extend({
   height: var(--size);
 }
 
+#event-header {
+  a {
+    transition: all 0.4s ease-in-out;
+    color: black;
+    
+    &:hover {
+      color: $primary;
+    }
+  }
+}
+
 @media (max-width: 500px) {
   .card-container {
     --size: 100%;

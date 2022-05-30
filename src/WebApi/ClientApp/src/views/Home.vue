@@ -84,7 +84,7 @@ export default Vue.extend({
 .box-pointer {
   position: absolute;
   pointer-events: none;
-  transition: all 0.2s ease;
+  transition: all 0.3s cubic-bezier(.5,.5,.5,1.2);
 }
 
 @media (max-width: 768px) {

@@ -3,7 +3,7 @@
     <transition name="authAnim">
       <div class="authorize-page" v-if="isAuthorize" key="authorize">
         <div class="aleft">
-          <div class="authorize-form">
+          <form class="authorize-form" onsubmit="return false">
             <h1>Войти в систему</h1>
             <label class="custom-field one">
               <input type="text" placeholder=" " v-model="login" />
@@ -17,9 +17,9 @@
 
             <label class="registr" style="color: red" v-if="error.length > 0">{{ error }}</label>
 
-            <button class="submit" :disabled="isNextStep" @click="authorize">Продолжить</button>
+            <button type="submit" class="submit" :disabled="isNextStep" @click="authorize">Продолжить</button>
             <label class="registr">У вас нет аккаунта? <a @click="isAuthorize = false" class="anotherPage">Зарегистрируйтесь</a></label>
-          </div>
+          </form>
         </div>
         <div class="authorize-back">
           <img src="../assets/Authorization.svg" width="800px" />
@@ -30,7 +30,7 @@
           <img src="../assets/Registration.svg" height="740px" />
         </div>
         <div class="aleft">
-          <div class="authorize-form">
+          <form class="authorize-form" onsubmit="return false">
             <h1>Зарегистрироваться</h1>
             <label class="custom-field one">
               <input type="text" placeholder=" " v-model="lastName" />
@@ -59,9 +59,9 @@
 
             <label class="registr" style="color: red" v-if="error.length > 0">{{ error }}</label>
 
-            <button class="submit" :disabled="isNextStep" @click="authorize">Продолжить</button>
+            <button type="submit" class="submit" :disabled="isNextStep" @click="authorize">Продолжить</button>
             <label class="registr">У вас есть аккаунт? <a @click="isAuthorize = true" class="anotherPage">Войти</a></label>
-          </div>
+          </form>
         </div>
       </div>
     </transition>
