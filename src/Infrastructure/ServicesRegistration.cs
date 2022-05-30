@@ -24,12 +24,15 @@ public static class ServicesRegistration
         services.AddScoped<IAuthenticationService, AuthenticationService>();
         services.AddScoped<IAuthorizationService, AuthorizationService>();
         services.AddScoped<IAccountService, AccountService>();
-
-        // var connectionString = Environment.GetEnvironmentVariable("default");
-        // services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(connectionString)
-        //                                                               .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
+        
+#if DEBUG
         services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql("Server=localhost;Port=5432;Database=diploma;Username=poscan;Password=ad221100")
+            .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
+#else
+        var connectionString = Environment.GetEnvironmentVariable("default");
+        services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(connectionString)
                                                                       .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
+#endif
         services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddErrorDescriber<CustomIdentityErrorDescriber>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
