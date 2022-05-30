@@ -4,24 +4,24 @@ namespace Infrastructure;
 
 public class CustomIdentityErrorDescriber : IdentityErrorDescriber
 {
-    public override IdentityError DefaultError() { return new IdentityError { Code = nameof(DefaultError), Description = $"Произошла неизвестная ошибка" }; }
-    public override IdentityError ConcurrencyFailure() { return new IdentityError { Code = nameof(ConcurrencyFailure), Description = "Ошибка оптимистичного контроля параллелизма, объект был изменён" }; }
-    public override IdentityError PasswordMismatch() { return new IdentityError { Code = nameof(PasswordMismatch), Description = "Некорретный пароль" }; }
-    public override IdentityError InvalidToken() { return new IdentityError { Code = nameof(InvalidToken), Description = "Недействительный токен" }; }
-    public override IdentityError LoginAlreadyAssociated() { return new IdentityError { Code = nameof(LoginAlreadyAssociated), Description = "Пользователь с таким логином уже существует" }; }
-    public override IdentityError InvalidUserName(string userName) { return new IdentityError { Code = nameof(InvalidUserName), Description = $"Имя пользователя '{userName}' некорректно, может содержать только буквы и цифры" }; }
-    public override IdentityError InvalidEmail(string email) { return new IdentityError { Code = nameof(InvalidEmail), Description = $"Email '{email}' некорректен" }; }
-    public override IdentityError DuplicateUserName(string userName) { return new IdentityError { Code = nameof(DuplicateUserName), Description = $"Пользователь с именем '{userName}' уже существует" }; }
-    public override IdentityError DuplicateEmail(string email) { return new IdentityError { Code = nameof(DuplicateEmail), Description = $"Email '{email}' уже используется" }; }
-    public override IdentityError InvalidRoleName(string role) { return new IdentityError { Code = nameof(InvalidRoleName), Description = $"Имя роли '{role}' некорректно" }; }
-    public override IdentityError DuplicateRoleName(string role) { return new IdentityError { Code = nameof(DuplicateRoleName), Description = $"Имя роли '{role}' уже используется" }; }
-    public override IdentityError UserAlreadyHasPassword() { return new IdentityError { Code = nameof(UserAlreadyHasPassword), Description = "Пользователь уже установил пароль" }; }
-    public override IdentityError UserLockoutNotEnabled() { return new IdentityError { Code = nameof(UserLockoutNotEnabled), Description = "Блокировка недоступна для этого пользователя" }; }
-    public override IdentityError UserAlreadyInRole(string role) { return new IdentityError { Code = nameof(UserAlreadyInRole), Description = $"Пользователю уже присвоена роль '{role}'." }; }
-    public override IdentityError UserNotInRole(string role) { return new IdentityError { Code = nameof(UserNotInRole), Description = $"У пользователя нет роли '{role}'." }; }
-    public override IdentityError PasswordTooShort(int length) { return new IdentityError { Code = nameof(PasswordTooShort), Description = $"Пароль должен быть длиной не менее {length} символов" }; }
-    public override IdentityError PasswordRequiresNonAlphanumeric() { return new IdentityError { Code = nameof(PasswordRequiresNonAlphanumeric), Description = "Пароль должен быть содержать хотя бы один не буквенно-цифровой символ" }; }
-    public override IdentityError PasswordRequiresDigit() { return new IdentityError { Code = nameof(PasswordRequiresDigit), Description = "Пароль должен содержать хотя бы одну цифру ('0'-'9')." }; }
-    public override IdentityError PasswordRequiresLower() { return new IdentityError { Code = nameof(PasswordRequiresLower), Description = "Пароль должен содержать хотя бы один символ в нижнем регистре ('a'-'z')." }; }
-    public override IdentityError PasswordRequiresUpper() { return new IdentityError { Code = nameof(PasswordRequiresUpper), Description = "Пароль должен содержать хотя бы один символ в верхнем регистре ('A'-'Z')" }; }
+     public override IdentityError DefaultError() { return new IdentityError { Code = nameof(DefaultError), Description = $"РџСЂРѕРёР·РѕС€Р»Р° РЅРµРёР·РІРµСЃС‚РЅР°СЏ РѕС€РёР±РєР°" }; }
+    public override IdentityError ConcurrencyFailure() { return new IdentityError { Code = nameof(ConcurrencyFailure), Description = "РћС€РёР±РєР° РѕРїС‚РёРјРёСЃС‚РёС‡РЅРѕРіРѕ РєРѕРЅС‚СЂРѕР»СЏ РїР°СЂР°Р»Р»РµР»РёР·РјР°, РѕР±СЉРµРєС‚ Р±С‹Р» РёР·РјРµРЅС‘РЅ" }; }
+    public override IdentityError PasswordMismatch() { return new IdentityError { Code = nameof(PasswordMismatch), Description = "РќРµРєРѕСЂСЂРµС‚РЅС‹Р№ РїР°СЂРѕР»СЊ" }; }
+    public override IdentityError InvalidToken() { return new IdentityError { Code = nameof(InvalidToken), Description = "РќРµРґРµР№СЃС‚РІРёС‚РµР»СЊРЅС‹Р№ С‚РѕРєРµРЅ" }; }
+    public override IdentityError LoginAlreadyAssociated() { return new IdentityError { Code = nameof(LoginAlreadyAssociated), Description = "РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ СЃ С‚Р°РєРёРј Р»РѕРіРёРЅРѕРј СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚" }; }
+    public override IdentityError InvalidUserName(string userName) { return new IdentityError { Code = nameof(InvalidUserName), Description = $"РРјСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ '{userName}' РЅРµРєРѕСЂСЂРµРєС‚РЅРѕ, РјРѕР¶РµС‚ СЃРѕРґРµСЂР¶Р°С‚СЊ С‚РѕР»СЊРєРѕ Р±СѓРєРІС‹ Рё С†РёС„СЂС‹" }; }
+    public override IdentityError InvalidEmail(string email) { return new IdentityError { Code = nameof(InvalidEmail), Description = $"Email '{email}' РЅРµРєРѕСЂСЂРµРєС‚РµРЅ" }; }
+    public override IdentityError DuplicateUserName(string userName) { return new IdentityError { Code = nameof(DuplicateUserName), Description = $"РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ СЃ РёРјРµРЅРµРј '{userName}' СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚" }; }
+    public override IdentityError DuplicateEmail(string email) { return new IdentityError { Code = nameof(DuplicateEmail), Description = $"Email '{email}' СѓР¶Рµ РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ" }; }
+    public override IdentityError InvalidRoleName(string role) { return new IdentityError { Code = nameof(InvalidRoleName), Description = $"РРјСЏ СЂРѕР»Рё '{role}' РЅРµРєРѕСЂСЂРµРєС‚РЅРѕ" }; }
+    public override IdentityError DuplicateRoleName(string role) { return new IdentityError { Code = nameof(DuplicateRoleName), Description = $"РРјСЏ СЂРѕР»Рё '{role}' СѓР¶Рµ РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ" }; }
+    public override IdentityError UserAlreadyHasPassword() { return new IdentityError { Code = nameof(UserAlreadyHasPassword), Description = "РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ СѓР¶Рµ СѓСЃС‚Р°РЅРѕРІРёР» РїР°СЂРѕР»СЊ" }; }
+    public override IdentityError UserLockoutNotEnabled() { return new IdentityError { Code = nameof(UserLockoutNotEnabled), Description = "Р‘Р»РѕРєРёСЂРѕРІРєР° РЅРµРґРѕСЃС‚СѓРїРЅР° РґР»СЏ СЌС‚РѕРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ" }; }
+    public override IdentityError UserAlreadyInRole(string role) { return new IdentityError { Code = nameof(UserAlreadyInRole), Description = $"РџРѕР»СЊР·РѕРІР°С‚РµР»СЋ СѓР¶Рµ РїСЂРёСЃРІРѕРµРЅР° СЂРѕР»СЊ '{role}'." }; }
+    public override IdentityError UserNotInRole(string role) { return new IdentityError { Code = nameof(UserNotInRole), Description = $"РЈ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РЅРµС‚ СЂРѕР»Рё '{role}'." }; }
+    public override IdentityError PasswordTooShort(int length) { return new IdentityError { Code = nameof(PasswordTooShort), Description = $"РџР°СЂРѕР»СЊ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РґР»РёРЅРѕР№ РЅРµ РјРµРЅРµРµ {length} СЃРёРјРІРѕР»РѕРІ" }; }
+    public override IdentityError PasswordRequiresNonAlphanumeric() { return new IdentityError { Code = nameof(PasswordRequiresNonAlphanumeric), Description = "РџР°СЂРѕР»СЊ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ СЃРѕРґРµСЂР¶Р°С‚СЊ С…РѕС‚СЏ Р±С‹ РѕРґРёРЅ РЅРµ Р±СѓРєРІРµРЅРЅРѕ-С†РёС„СЂРѕРІРѕР№ СЃРёРјРІРѕР»" }; }
+    public override IdentityError PasswordRequiresDigit() { return new IdentityError { Code = nameof(PasswordRequiresDigit), Description = "РџР°СЂРѕР»СЊ РґРѕР»Р¶РµРЅ СЃРѕРґРµСЂР¶Р°С‚СЊ С…РѕС‚СЏ Р±С‹ РѕРґРЅСѓ С†РёС„СЂСѓ ('0'-'9')." }; }
+    public override IdentityError PasswordRequiresLower() { return new IdentityError { Code = nameof(PasswordRequiresLower), Description = "РџР°СЂРѕР»СЊ РґРѕР»Р¶РµРЅ СЃРѕРґРµСЂР¶Р°С‚СЊ С…РѕС‚СЏ Р±С‹ РѕРґРёРЅ СЃРёРјРІРѕР» РІ РЅРёР¶РЅРµРј СЂРµРіРёСЃС‚СЂРµ ('a'-'z')." }; }
+    public override IdentityError PasswordRequiresUpper() { return new IdentityError { Code = nameof(PasswordRequiresUpper), Description = "РџР°СЂРѕР»СЊ РґРѕР»Р¶РµРЅ СЃРѕРґРµСЂР¶Р°С‚СЊ С…РѕС‚СЏ Р±С‹ РѕРґРёРЅ СЃРёРјРІРѕР» РІ РІРµСЂС…РЅРµРј СЂРµРіРёСЃС‚СЂРµ ('A'-'Z')" }; }
 }

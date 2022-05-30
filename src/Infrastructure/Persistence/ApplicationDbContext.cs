@@ -17,8 +17,10 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfiguration(new EventConfiguration());
         modelBuilder.ApplyConfiguration(new ClientConfiguration());
+        modelBuilder.ApplyConfiguration(new EventConfiguration());
+        modelBuilder.ApplyConfiguration(new EventUserConfiguration());
+        modelBuilder.ApplyConfiguration(new StatusConfiguration());
 
         base.OnModelCreating(modelBuilder);
     }

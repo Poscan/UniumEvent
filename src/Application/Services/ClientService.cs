@@ -41,6 +41,9 @@ public class ClientService : IClientService
         try
         {
             var foundClient = await _clientRepository.GetAsync(clientId, cancellationToken);
+            if (foundClient == null)
+                throw new Exception("НЕ удалось найти пользователя");
+            
             var clientDto = _mapper.Map<ClientDto>(foundClient);
 
             return Response.Success(clientDto);
@@ -51,7 +54,7 @@ public class ClientService : IClientService
             throw;
         }
     }
-
+    
     public async Task<Response<IEnumerable<ClientDto>>> GetAllAsync(CancellationToken cancellationToken)
     {
         try

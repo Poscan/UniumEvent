@@ -25,8 +25,10 @@ public static class ServicesRegistration
         services.AddScoped<IAuthorizationService, AuthorizationService>();
         services.AddScoped<IAccountService, AccountService>();
 
-        var connectionString = Environment.GetEnvironmentVariable("default");
-        services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(connectionString)
+        // var connectionString = Environment.GetEnvironmentVariable("default");
+        // services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(connectionString)
+        //                                                               .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
+        services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql("Server=localhost;Port=5432;Database=diploma;Username=poscan;Password=ad221100")
                                                                       .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
         services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddErrorDescriber<CustomIdentityErrorDescriber>()
@@ -38,8 +40,10 @@ public static class ServicesRegistration
 
         services.AddTransient<IUnitOfWork, UnitOfWork>();
         services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
-        services.AddTransient<IEventRepository, EventRepository>();
         services.AddTransient<IClientRepository, ClientRepository>();
+        services.AddTransient<IEventUserRepository, EventUserRepository>();
+        services.AddTransient<IEventRepository, EventRepository>();
+        services.AddTransient<IStatusRepository, StatusRepository>();
 
         return services;
     }

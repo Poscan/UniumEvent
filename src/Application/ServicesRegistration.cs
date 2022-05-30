@@ -14,8 +14,9 @@ public static class ServicesRegistration
         var executingAssembly = Assembly.GetExecutingAssembly();
         
         services.AddMapster(executingAssembly);
-        services.AddScoped<IEventService, EventService>();
         services.AddScoped<IClientService, ClientService>();
+        services.AddScoped<IEventService, EventService>();
+        services.AddScoped<IEventUserService, EventUserService>();
 
         return services;
     }
