@@ -18,14 +18,15 @@
       <div class="account-sidebar">
         <router-link
           to="/account/user-profile"
-          :class="['account-sidebar-item', 'l-label', { select: $router.currentRoute.path == '/account/user-profile' }]"
+          :class="['account-sidebar-item', 'l-label', { select: $router.currentRoute.path === '/account/user-profile' || 
+                                                                $router.currentRoute.path === '/account/edit-user-profile'  }]"
         >
           Информация о пользователе
         </router-link>
         <router-link
           hidden
           to="/account/user-events"
-          :class="['account-sidebar-item', 'l-label', { select: $router.currentRoute.path == '/account/user-events' }]"
+          :class="['account-sidebar-item', 'l-label', { select: $router.currentRoute.path === '/account/user-events' }]"
         >
           События пользователя
         </router-link>
@@ -98,6 +99,7 @@ export default Vue.extend({
 
 .account-info-column-right {
   justify-self: end;
+  align-self: center;
   color: rgb(98, 109, 122);
 }
 
@@ -126,5 +128,10 @@ export default Vue.extend({
 .fade-enter,
 .fade-leave-active {
   opacity: 0;
+}
+
+.header-edit {
+  display: flex;
+  justify-content: space-between;
 }
 </style>

@@ -30,6 +30,10 @@ const routes: Array<RouteConfig> = [
         component: () => import("../views/UserProfile.vue"),
       },
       {
+        path: "edit-user-profile",
+        component: () => import("../views/EditUserProfile.vue"),
+      },
+      {
         path: "user-events",
         component: () => import("../views/UserEvents.vue"),
       },

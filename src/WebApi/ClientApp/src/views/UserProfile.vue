@@ -1,6 +1,13 @@
 <template>
   <div>
-    <div class="h-label">Информация о пользователе</div>
+    <div class="header-edit">
+      <div class="h-label">Информация о пользователе</div>
+      <router-link to="edit-user-profile">
+        <div class="button-edit">
+          Редактировать
+        </div>
+      </router-link>
+    </div>
     <div class="account-info-grid">
       <div class="account-info-column-right">Фамилия:</div>
       <div>{{ client.lastName }}</div>
@@ -50,4 +57,13 @@ export default Vue.extend({
 });
 </script>
 
-<style></style>
+<style lang="scss">
+@import "../../public/main";
+
+.button-edit {
+  padding: 10px;
+  background: $primary;
+  color: white;
+  border-radius: 3px;
+}
+</style>
