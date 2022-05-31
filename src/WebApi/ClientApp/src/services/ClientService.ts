@@ -5,6 +5,24 @@ export default {
   async getCurrentUser() {
     return await axios.get<IClient>("/api/Client/current-user");
   },
+  
+  async SaveUser(client: IClient){
+    return await axios.post("/api/Client", {
+      "id": client.id,
+      "userId": client.userId,
+      "lastName": client.lastName,
+      "firstName": client.firstName,
+      "patrName": client.patrName,
+      "mobilePhone": client.mobilePhone,
+      "email": client.email,
+      "schoolNumber": client.schoolNumber,
+      "birthday": null,
+      "parentLastName": client.parentLastName,
+      "parentFirstName": client.parentFirstName,
+      "parentPatrName": client.parentPatrName,
+      "parentMobilePhone": client.parentMobilePhone
+    });
+  },
 
   async createAccount(login: string, password: string, lastName: string, firstName: string, patrName: string) {
     return await axios.post("/api/Account", {

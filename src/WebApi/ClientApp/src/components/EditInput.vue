@@ -1,5 +1,5 @@
 <template>
-  <input class="edit-input m-label" type="text" v-model="value" :placeholder="placeholder" />
+  <input class="edit-input m-label" type="text" :value="value"  @input="$emit('input', $event.target.value)" :placeholder="placeholder" />
 </template>
 
 <script lang="ts">

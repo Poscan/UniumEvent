@@ -29,7 +29,7 @@ public class ClientService : IClientService
         var userId = _currentUser.UserId;
 
         if (userId == null)
-            return Response.Fail<ClientDto>(new ResponseError("Не удалось найти текущего пользователя"));
+            return Response.Fail<ClientDto>(new ResponseError("РќРµ СѓРґР°Р»РѕСЃСЊ РЅР°Р№С‚Рё С‚РµРєСѓС‰РµРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ"));
 
         var client = await _clientRepository.GetByUserIdAsync(userId, cancellationToken);
         var clientDto = _mapper.Map<ClientDto>(client);
@@ -42,7 +42,7 @@ public class ClientService : IClientService
         {
             var foundClient = await _clientRepository.GetAsync(clientId, cancellationToken);
             if (foundClient == null)
-                throw new Exception("НЕ удалось найти пользователя");
+                throw new Exception("РќР• СѓРґР°Р»РѕСЃСЊ РЅР°Р№С‚Рё РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ");
             
             var clientDto = _mapper.Map<ClientDto>(foundClient);
 
@@ -74,7 +74,14 @@ public class ClientService : IClientService
     public async Task<Response<int>> SaveAsync(SaveClientRequest request, CancellationToken cancellationToken)
     {
         var clientForSave = _mapper.Map<Client>(request);
-        await _clientRepository.SaveAsync(clientForSave, cancellationToken);
+        if (clientForSave.Id == 0)
+        {
+            await _clientRepository.SaveAsync(clientForSave, cancellationToken);    
+        }
+        else
+        {
+            _clientRepository.Update(clientForSave);
+        }
         await _unitOfWork.CommitAsync(cancellationToken);
 
         return Response.Success(clientForSave.Id);

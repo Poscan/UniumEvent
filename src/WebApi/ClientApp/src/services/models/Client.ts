@@ -1,6 +1,7 @@
 export interface IClient {
   id: number;
 
+  userId: string;
   lastName: string;
   firstName: string;
   patrName: string | null;
@@ -18,7 +19,8 @@ export interface IClient {
 export default class Client implements IClient {
   constructor(
     client: IClient = {
-      id: 0,
+      id: 0, 
+      userId: "",
       lastName: "",
       firstName: "",
       patrName: null,
@@ -33,6 +35,8 @@ export default class Client implements IClient {
     },
   ) {
     this.id = client.id;
+    
+    this.userId = client.userId;
     this.lastName = client.lastName;
     this.firstName = client.firstName;
     this.patrName = client.patrName;
@@ -49,6 +53,7 @@ export default class Client implements IClient {
 
   id: number;
 
+  userId: string;
   lastName: string;
   firstName: string;
   patrName: string | null;
