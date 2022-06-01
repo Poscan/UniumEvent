@@ -13,6 +13,7 @@ public class Client : IEntity
     public string? MobilePhone { get; set; }
     public string Email { get; set; }
     public string? SchoolNumber { get; set; }
+    public string? Sex { get; set; }
     public DateTime? Birthday { get; set; }
 
     public string? ParentLastName { get; set; }

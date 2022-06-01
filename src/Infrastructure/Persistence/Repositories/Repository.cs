@@ -41,7 +41,12 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : class, I
         return entities;
     }
 
-    public void Delete(params TEntity[] entities)
+    public void Delete(TEntity entity)
+    {
+        DbSet.Remove(entity);
+    }
+    
+    public void DeleteRange(params TEntity[] entities)
     {
         DbSet.RemoveRange(entities);
     }

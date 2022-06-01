@@ -10,8 +10,13 @@ public class EventUserRepository : Repository<EventUser>, IEventUserRepository
     {
     }
 
-    public async Task<IReadOnlyCollection<EventUser>> GetAllAsync(int userId)
+    public async Task<IReadOnlyCollection<EventUser>> GetAllEventsAsync(int userId)
     {
         return await DbSet.Where(x => x.Client.Id == userId).ToListAsync();
+    }
+    
+    public async Task<IReadOnlyCollection<EventUser>> GetAllUsersAsync(int eventId)
+    {
+        return await DbSet.Where(x => x.Event.Id == eventId).ToListAsync();
     }
 }

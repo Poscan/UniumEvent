@@ -15,15 +15,27 @@ public class EventUsersController : ApiControllerBase
 
     private readonly IEventUserService _eventUserService;
 
-    [HttpGet("{userId:int}")]
-    public async Task<ActionResult<EventDto>> GetAll([FromRoute] int userId, CancellationToken cancellationToken)
+    [HttpGet("/client-id/{clientId:int}")]
+    public async Task<ActionResult<EventDto>> GetAllEvents([FromRoute] int clientId, CancellationToken cancellationToken)
     {
-        return Ok( await _eventUserService.GetAllAsync(userId, cancellationToken));
+        return Ok( await _eventUserService.GetAllEventsAsync(clientId, cancellationToken));
+    }
+    
+    [HttpGet("/event-id/{eventId:int}")]
+    public async Task<ActionResult<EventDto>> GetAllUsers([FromRoute] int eventId, CancellationToken cancellationToken)
+    {
+        return Ok( await _eventUserService.GetAllUsersAsync(eventId, cancellationToken));
     }
     
     [HttpPost]
-    public async Task<ActionResult<int>> SaveEvent([FromBody] SignUpEventRequest signUpEventRequest, CancellationToken cancellationToken)
+    public async Task<ActionResult<int>> Subscribe([FromBody] SubscribeEventRequest subscribeEventRequest, CancellationToken cancellationToken)
     {
-        return Ok(await _eventUserService.SaveAsync(signUpEventRequest, cancellationToken));
+        return Ok(await _eventUserService.SaveAsync(subscribeEventRequest, cancellationToken));
+    }
+    
+    [HttpDelete("{id:int}")]
+    public async Task<ActionResult<int>> Unsubscribe([FromRoute] int id, CancellationToken cancellationToken)
+    {
+        return Ok(await _eventUserService.DeleteAsync(id, cancellationToken));
     }
 }

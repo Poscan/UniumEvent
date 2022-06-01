@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Application.Dto;
 
-public class SignUpEventRequest
+public class SubscribeEventRequest
 {
     [Required]
     public int UserId { get; set; }
