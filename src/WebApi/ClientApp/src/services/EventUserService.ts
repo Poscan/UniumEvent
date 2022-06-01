@@ -3,21 +3,21 @@ import {IEventUser} from "@/services/models/EventUser";
 
 export default {
   async SignUpEvent(eventUser: IEventUser){
-    return await axios.post("/api/EventUser", {
+    return await axios.post("/api/EventUsers", {
       "userId": eventUser.client.id,
       "eventId": eventUser.event.id,
     });
   },
 
   async DeleteEventUser(eventUserId: number) {
-    return await axios.delete("/api/EventUser/" + eventUserId);
+    return await axios.delete("/api/EventUsers/" + eventUserId);
   },
 
   async GetAllUsers(eventId: number) {
-    return await axios.get("/api/EventUser/event-id/" + eventId);
+    return await axios.get("/api/EventUsers/event-id/" + eventId);
   },
 
   async GetAllEvent(clientId: number) {
-    return await axios.get("/api/EventUser/client-id/" + clientId);
+    return await axios.get("/api/EventUsers/client-id/" + clientId);
   },
 };

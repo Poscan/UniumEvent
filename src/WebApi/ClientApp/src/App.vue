@@ -11,7 +11,7 @@
         </router-link>
       </div>
       <div v-else>
-        <router-link to="/authorize" class="m-label" v-if="$route.name != 'Authorize'"><span class="nav-label">ВОЙТИ</span></router-link>
+        <router-link to="/authorize" class="m-label" v-if="$route.name !== 'Authorize'"><span class="nav-label">ВОЙТИ</span></router-link>
       </div>
     </div>
     <transition name="fade">
@@ -26,9 +26,7 @@ import Vue from "vue";
 export default Vue.extend({
   computed: {
     email() {
-      const email = this.$store.state.client?.email;
-
-      return email;
+      return this.$store.state.client?.email;
     },
   },
 });

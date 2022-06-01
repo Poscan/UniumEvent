@@ -83,7 +83,7 @@ public class EventUserService : IEventUserService
                            {
                                ClientId = request.UserId,
                                EventId = request.EventId,
-                               Status = new Status { Id = 0, Name = "Ученик" }
+                               StatusId = 1
                            };
         
         await _eventUserRepository.SaveAsync(eventForSave, cancellationToken);

@@ -10,6 +10,8 @@ import { Vue } from "vue-property-decorator";
 import EventCard from "@/components/EventCard.vue";
 import picture from "../assets/Gau.svg";
 import subPicture from "../assets/Gau.png";
+import ClientService from "@/services/ClientService";
+import Client from "@/services/models/Client";
 
 export default Vue.extend({
   components: {
@@ -23,33 +25,43 @@ export default Vue.extend({
     };
   },
 
+  methods: {
+    async loadUser() {
+      const response = (await ClientService.getCurrentUser()) as any;
+
+      if (response.data) {
+        this.$store.state.client = new Client(response.data.data);
+      }
+    }
+  },
+  
   mounted() {
-    var pointerElem = document.getElementById("pointer1");
+    const pointerElem = document.getElementById("pointer1");
 
     document.onmousemove = function (event) {
-      var mouseX = event.pageX;
-      var mouseY = event.pageY;
+      const mouseX = event.pageX;
+      const mouseY = event.pageY;
 
-      var parentElement = document.getElementById("event-header");
-      var pixels = 0;
+      const parentElement = document.getElementById("event-header");
+      let pixels = 0;
 
       if (parentElement) {
-        var styles = window.getComputedStyle(parentElement);
-        var margin = parseFloat(styles["marginBottom"]);
+        const styles = window.getComputedStyle(parentElement);
+        const margin = parseFloat(styles["marginBottom"]);
         pixels = margin + 21;
       }
 
-      var element = document.getElementById("home")?.getBoundingClientRect();
-      var pX = ((element?.left ?? 0) + (element?.right ?? 0)) / 2;
-      var pY = (element?.bottom ?? 0) - pixels;
+      const element = document.getElementById("home")?.getBoundingClientRect();
+      const pX = ((element?.left ?? 0) + (element?.right ?? 0)) / 2;
+      const pY = (element?.bottom ?? 0) - pixels;
 
-      var pril = pX - mouseX;
-      var prot = pY - mouseY;
-      var gip = Math.sqrt(pril * pril + prot * prot);
+      const pril = pX - mouseX;
+      const prot = pY - mouseY;
+      const gip = Math.sqrt(pril * pril + prot * prot);
 
       requestAnimationFrame(function movePointer() {
         if (pointerElem) {
-          var degree = Math.acos(pril / gip);
+          let degree = Math.acos(pril / gip);
           degree *= mouseY > pY ? -1 : 1;
 
           pointerElem.style.left = Math.floor(mouseX) - 32 + "px";
@@ -64,6 +76,7 @@ export default Vue.extend({
         }
       });
     };
+    this.loadUser()
   },
 });
 </script>

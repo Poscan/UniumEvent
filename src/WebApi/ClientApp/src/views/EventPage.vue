@@ -74,7 +74,8 @@
       <img src="../assets/Third.svg" class="section-image" />
     </section>
 
-    <router-link to="/authorize" class="subscribe">ЗАПИСАТЬСЯ</router-link>
+    <button v-if="isAuthorize" class="subscribe" @click="Subscribe">ОТПИСАТЬСЯ</button>
+    <button v-else class="unsubscribe" @click="Unsubscribe">ЗАПИСАТЬСЯ</button>
   </div>
 </template>
 
@@ -83,6 +84,11 @@ import Vue from "vue";
 import PreviewSection from "@/components/PreviewSection.vue";
 import TextLine from "@/components/TextLine.vue";
 import image from "../assets/Gau.svg";
+import Event from "@/services/models/Event";
+import ClientService from "@/services/ClientService";
+import EventUserService from "@/services/EventUserService";
+import EventUser from "@/services/models/EventUser";
+import Client from "@/services/models/Client";
 
 export default Vue.extend({
   components: {
@@ -93,7 +99,35 @@ export default Vue.extend({
   data() {
     return {
       image: image,
+      event: new Event({
+        id: 1,
+        name: "Городская Академия Юниум",
+        pageName: "GAU",
+        startDate: new Date(1, 6, 2022),
+        endDate: new Date(1, 7, 2022)
+      }),
     };
+  },
+  
+  computed: {
+    isAuthorize() : boolean {
+      return this.$store.state.client.id != 0;
+    }
+  },
+  
+  methods: {
+    async Subscribe() {
+      const response = (await ClientService.getCurrentUser()) as any;
+
+      const user = new Client(response.data.data);
+      const eventUser = new EventUser({event: this.event, client: user, id: 0});
+
+      const res = await EventUserService.SignUpEvent(eventUser);
+    },
+
+    async Unsubscribe() {
+      console.log("unsubscribe");
+    }
   },
 });
 </script>
@@ -164,6 +198,27 @@ pre {
   color: $green;
   font-size: 32px;
   border: 3px $green solid;
+  border-radius: 3px;
+  transition: 0.4s ease-out;
+
+  &:hover {
+    background-color: $primary;
+    border: 3px burlywood solid;
+    color: burlywood;
+  }
+}
+
+.unsubscribe {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  padding: 10px 20px;
+  color: #888;
+  font-size: 32px;
+  border: 3px #888 solid;
+  border-radius: 3px;
   transition: 0.4s ease-out;
 
   &:hover {
