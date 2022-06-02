@@ -1,3 +1,4 @@
+using Domain.Entities;
 using Infrastructure.Persistence.Configurations;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -9,6 +10,7 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
 {
     public ApplicationDbContext()
     {
+        Database.EnsureCreated();
     }
 
     public ApplicationDbContext(DbContextOptions options) : base(options)
