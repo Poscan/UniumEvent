@@ -86,7 +86,7 @@ export default Vue.extend({
 
 .logo {
   height: 86px;
-  position: absolute;
+  position: fixed;
   top: 20px;
   left: 40px;
   z-index: 999;

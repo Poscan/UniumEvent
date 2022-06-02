@@ -62,7 +62,7 @@ export default Vue.extend({
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px #ddd solid;
+  border: 2px #ddd solid;
   border-radius: 3px;
   padding: 10px;
 }
