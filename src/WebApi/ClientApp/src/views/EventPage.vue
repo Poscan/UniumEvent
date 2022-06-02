@@ -134,7 +134,7 @@ export default Vue.extend({
 
         const result = await EventUserService.SignUpEvent(eventUser) as any;
 
-        if (result.data.isSuccessful) {
+        if (result?.data.isSuccessful) {
           this.eventUser = new EventUser(result.data.data);
         }
       } else {
@@ -149,7 +149,7 @@ export default Vue.extend({
 
       const response = await EventUserService.DeleteEventUser(this.event.id) as any;
 
-      if (response.data.isSuccessful) {
+      if (response?.data.isSuccessful) {
         this.eventUser = new EventUser();
       }
 
@@ -159,8 +159,10 @@ export default Vue.extend({
 
   async mounted() {
     this.$store.state.isLoading = true;
+    
     const response = await EventUserService.GetAllEvent(this.$store.state.client.id);
-    if (response.data.isSuccessful) {
+    
+    if (response?.data.isSuccessful) {
       const eventUsers = response.data.data as EventUser[];
       this.eventUser = eventUsers.find(x => x.event.id == this.event.id) ?? new EventUser();
     }

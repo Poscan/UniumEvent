@@ -65,7 +65,7 @@ export default Vue.extend({
       this.$store.state.isLoading = true;
       
       const result = await ClientService.SaveUser(this.client) as any;
-      if(result.data.data) {
+      if(result?.data.data) {
         await this.$router.push("/account/user-profile");
       }
 

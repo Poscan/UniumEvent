@@ -31,7 +31,7 @@ export default Vue.extend({
       
       const response = (await ClientService.getCurrentUser()) as any;
 
-      if (response.data) {
+      if (response?.data.isSuccessful) {
         this.$store.state.client = new Client(response.data.data);
       }
 

@@ -48,7 +48,7 @@ export default Vue.extend({
     this.$store.state.isLoading = true;
     const client = (await ClientService.getCurrentUser()) as any;
 
-    if (client.data) {
+    if (client?.data) {
       this.client = new Client(client.data.data);
       this.$store.state.client = this.client;
     }

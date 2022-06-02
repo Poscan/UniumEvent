@@ -36,7 +36,7 @@ export default Vue.extend({
       
       const response = await EventUserService.DeleteEventUser(eventId) as any;
 
-      if (response.data.isSuccessful) {
+      if (response?.data.isSuccessful) {
         const index = this.eventUsers.findIndex(x => x.event.id == eventId);
         this.eventUsers.splice(index, 1);
       }

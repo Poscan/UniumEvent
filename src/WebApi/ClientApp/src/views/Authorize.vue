@@ -106,11 +106,11 @@ export default Vue.extend({
       if (this.isAuthorize) {
         result = (await AuthService.login(this.login, this.password)) as any;
 
-        this.error = result.data.isSuccessful ? "" : result.data.Errors[0].Message;
+        this.error = result?.data.isSuccessful ? "" : result.data.Errors[0].Message;
       } else {
         result = (await AuthService.createAccount(this.login, this.password, this.lastName, this.firstName, this.patrName)) as any;
 
-        this.error = result.data.isSuccessful ? "" : result.data.errors[0].message;
+        this.error = result?.data.isSuccessful ? "" : result.data.errors[0].message;
       }
 
       if (result.data.isSuccessful) {
