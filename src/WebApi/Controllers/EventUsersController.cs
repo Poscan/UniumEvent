@@ -15,20 +15,20 @@ public class EventUsersController : ApiControllerBase
 
     private readonly IEventUserService _eventUserService;
 
-    [HttpGet("/client-id/{clientId:int}")]
-    public async Task<ActionResult<EventDto>> GetAllEvents([FromRoute] int clientId, CancellationToken cancellationToken)
+    [HttpGet("client-id/{clientId:int}")]
+    public async Task<ActionResult<EventUserDto>> GetAllEvents([FromRoute] int clientId, CancellationToken cancellationToken)
     {
         return Ok( await _eventUserService.GetAllEventsAsync(clientId, cancellationToken));
     }
     
-    [HttpGet("/event-id/{eventId:int}")]
-    public async Task<ActionResult<EventDto>> GetAllUsers([FromRoute] int eventId, CancellationToken cancellationToken)
+    [HttpGet("event-id/{eventId:int}")]
+    public async Task<ActionResult<EventUserDto>> GetAllUsers([FromRoute] int eventId, CancellationToken cancellationToken)
     {
         return Ok( await _eventUserService.GetAllUsersAsync(eventId, cancellationToken));
     }
     
     [HttpPost]
-    public async Task<ActionResult<int>> Subscribe([FromBody] SubscribeEventRequest subscribeEventRequest, CancellationToken cancellationToken)
+    public async Task<ActionResult<EventUserDto>> Subscribe([FromBody] SubscribeEventRequest subscribeEventRequest, CancellationToken cancellationToken)
     {
         return Ok(await _eventUserService.SaveAsync(subscribeEventRequest, cancellationToken));
     }

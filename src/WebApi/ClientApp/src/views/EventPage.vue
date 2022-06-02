@@ -74,8 +74,8 @@
       <img src="../assets/Third.svg" class="section-image" />
     </section>
 
-    <button v-if="isAuthorize" class="subscribe" @click="Subscribe">ОТПИСАТЬСЯ</button>
-    <button v-else class="unsubscribe" @click="Unsubscribe">ЗАПИСАТЬСЯ</button>
+    <button v-if="eventUser.event.id !== 0" class="unsubscribe" @click="Unsubscribe">ОТПИСАТЬСЯ</button>
+    <button v-else class="subscribe" @click="Subscribe">ЗАПИСАТЬСЯ</button>
   </div>
 </template>
 
@@ -106,6 +106,7 @@ export default Vue.extend({
         startDate: new Date(1, 6, 2022),
         endDate: new Date(1, 7, 2022)
       }),
+      eventUser: new EventUser(), 
     };
   },
   
@@ -119,16 +120,37 @@ export default Vue.extend({
     async Subscribe() {
       const response = (await ClientService.getCurrentUser()) as any;
 
-      const user = new Client(response.data.data);
-      const eventUser = new EventUser({event: this.event, client: user, id: 0});
+      if(response){
+        const user = new Client(response.data.data);
+        const eventUser = new EventUser({event: this.event, client: user, id: 0});
 
-      const res = await EventUserService.SignUpEvent(eventUser);
+        const result = await EventUserService.SignUpEvent(eventUser) as any;
+
+        if(result.data.isSuccessful) {
+          this.eventUser = new EventUser(result.data.data);
+        }
+      }
+      else {
+        this.$router.push("/authorize");
+      }
     },
 
     async Unsubscribe() {
-      console.log("unsubscribe");
+      const response = await EventUserService.DeleteEventUser(this.event.id) as any;
+      
+      if(response.data.isSuccessful){
+        this.eventUser = new EventUser();
+      }
     }
   },
+  
+  async mounted() {
+      const response = await EventUserService.GetAllEvent(this.$store.state.client.id);
+      if(response.data.isSuccessful){
+        const eventUsers = response.data.data as EventUser[];
+        this.eventUser = eventUsers.find(x => x.event.id == this.event.id) ?? new EventUser();
+      }
+  }
 });
 </script>
 

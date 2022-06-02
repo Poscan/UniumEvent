@@ -1,6 +1,7 @@
 using Application.Contracts;
 using Application.Contracts.Authorization;
 using Application.Dto;
+using Application.Dto.Authorization;
 using Application.Dto.Requests.CreateUser;
 using Application.Wrappers;
 using Microsoft.AspNetCore.Mvc;
@@ -19,12 +20,12 @@ public class AccountController : ApiControllerBase
     }
 
     [HttpPost]
-    public async Task<Response<int>> CreateUser([FromBody] CreateUserRequest createUserRequest)
+    public async Task<Response<AuthorizationData>> CreateUser([FromBody] CreateUserRequest createUserRequest)
     {
         var userAsync = await _accountService.CreateUserAsync(createUserRequest.UserName, createUserRequest.Password);
 
         if (userAsync.Data == null || string.IsNullOrWhiteSpace(userAsync.Data.UserId))
-            return Application.Wrappers.Response.Fail<int>(userAsync.Errors ?? Array.Empty<ResponseError>());
+            return Application.Wrappers.Response.Fail<AuthorizationData>(userAsync.Errors ?? Array.Empty<ResponseError>());
         
         var clientId = await _clientService.CreateNew(new ClientDto
         {
@@ -34,8 +35,7 @@ public class AccountController : ApiControllerBase
             FirstName = createUserRequest.FirstName,
             PatrName = createUserRequest.PatrName
         });
-
-        return Application.Wrappers.Response.Success(clientId.Data);
-
+        
+        return userAsync;
     }
 }

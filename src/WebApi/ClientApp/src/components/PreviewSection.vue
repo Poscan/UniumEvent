@@ -33,8 +33,8 @@ export default Vue.extend({
     onScroll() {
       const y = window.scrollY;
       const elem = this.$refs["prev"] as HTMLElement;
-      const widthSection = elem.clientWidth;
-      const heightSection = elem.clientHeight;
+      const widthSection = elem?.clientWidth;
+      const heightSection = elem?.clientHeight;
 
       if (y > heightSection && this.y + this.height == heightSection) return;
 

@@ -11,7 +11,7 @@ const authService = AuthService;
 
 axios.interceptors.request.use((request: any) => {
   const token = authService.getAccessToken();
-  console.log(token);
+
   if (token) {
     request.headers["Authorization"] = `Bearer ${token}`;
   }
@@ -34,20 +34,23 @@ function createAxiosResponseInterceptor() {
         .renewToken()
         .then(() => {
           const token = authService.getAccessToken();
-            console.log("token", token);
+
           if (token) {
             error.response.config.headers["Authorization"] = `Bearer ${token}`;
             return axios(error.response.config);
           }
           else {
-              if(router.currentRoute.name != "Home"){
+              const pageName = router.currentRoute.name;
+              if(pageName != "Home" && pageName != "EventPage"){
                   router.push("/authorize");    
               }
           }
         })
         .catch((error: any) => {
           sessionStorage.clear();
-          if(router.currentRoute.name != "Home") {
+
+          const pageName = router.currentRoute.name;
+          if(pageName != "Home" && pageName != "EventPage") {
               router.push("/authorize");
           }
           return Promise.reject(error);
