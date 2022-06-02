@@ -62,6 +62,6 @@ public abstract class RepositoryTests<TEntity> : LibraryTestBase where TEntity :
         await SaveEntitiesAsync(entities);
         
         var entitiesFromDb = await _repository.GetAllAsync();
-        entitiesFromDb.Should().BeEquivalentTo(entities);
+        entitiesFromDb.Should().Contain(entities);
     }
 }
