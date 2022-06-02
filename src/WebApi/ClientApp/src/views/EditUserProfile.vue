@@ -62,10 +62,14 @@ export default Vue.extend({
   
   methods: {
     async SaveClient() {
+      this.$store.state.isLoading = true;
+      
       const result = await ClientService.SaveUser(this.client) as any;
       if(result.data.data) {
-        this.$router.push("/account/user-profile");
+        await this.$router.push("/account/user-profile");
       }
+
+      this.$store.state.isLoading = false;
     }
   },
   

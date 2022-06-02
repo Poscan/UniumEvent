@@ -1,5 +1,18 @@
 <template>
   <div id="app">
+    <div class="loading" v-if="isLoading">
+      <div id="container">
+        <svg viewBox="0 0 100 100">
+          <defs>
+            <filter id="shadow">
+              <feDropShadow dx="0" dy="0" stdDeviation="1.5"
+                            flood-color="#fc6767"/>
+            </filter>
+          </defs>
+          <circle id="spinner" style="fill:transparent;stroke:#dd2476;stroke-width: 7px;stroke-linecap: round;filter:url(#shadow);" cx="50" cy="50" r="45"/>
+        </svg>
+      </div>
+    </div>
     <router-link to="/">
       <img src="./assets/Logo.svg" class="logo" id="logo" />
       <img src="./assets/LogoMobile.svg" class="logo" id="logo-mobile" />
@@ -28,6 +41,10 @@ export default Vue.extend({
     email() {
       return this.$store.state.client?.email;
     },
+    
+    isLoading() {
+      return this.$store.state.isLoading;
+    }
   },
 });
 </script>
@@ -38,6 +55,19 @@ export default Vue.extend({
   right: 40px;
   position: fixed;
   z-index: 999;
+}
+
+.loading {
+  position: fixed;
+  background: rgba(0,0,0,0.2);
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999999;
 }
 
 .fade-enter-active,
@@ -79,5 +109,33 @@ export default Vue.extend({
   #logo {
     display: block;
   }
+}
+
+@keyframes animation {
+  0% {
+    stroke-dasharray: 1 98;
+    stroke-dashoffset: -105;
+  }
+  50% {
+    stroke-dasharray: 80 10;
+    stroke-dashoffset: -160;
+  }
+  100% {
+    stroke-dasharray: 1 98;
+    stroke-dashoffset: -300;
+  }
+}
+
+#container {
+  width: 200px;
+  height: 200px;
+}
+
+#spinner {
+  transform-origin: center;
+  animation-name: animation;
+  animation-duration: 1.2s;
+  animation-timing-function: cubic-bezier;
+  animation-iteration-count: infinite;
 }
 </style>

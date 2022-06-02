@@ -1,77 +1,83 @@
 <template>
   <div class="event-page">
-    <preview-section :pictureUrl="image" label="ГОРОДСКАЯ АКАДЕМИЯ ЮНИУМ" />
+    <preview-section :pictureUrl="image" label="ГОРОДСКАЯ АКАДЕМИЯ ЮНИУМ"/>
     <section class="text-wrap" id="first">
       <TextLine>
-        <template v-slot:header> 1 СМЕНА </template>
+        <template v-slot:header>1 СМЕНА</template>
 
         <template v-slot:date>
           с 30 мая
-          <br />
+          <br/>
           по 10 июня
         </template>
 
         <template v-slot:description>
-          Английский язык «Harry Potter and the students of Ю» - курс позволит погрузиться в атмосферу вселенной Гарри Поттера, а также хочешь выучить
+          Английский язык «Harry Potter and the students of Ю» - курс позволит погрузиться в атмосферу вселенной Гарри
+          Поттера, а также хочешь выучить
           новую лексику, грамматику и применить ее на практике.
-          <br />
-          <br />
-          Создание игр: дополненная и виртуальная реальность – научат программировать под различные платформы и создавать целые виртуальные миры, игры
+          <br/>
+          <br/>
+          Создание игр: дополненная и виртуальная реальность – научат программировать под различные платформы и
+          создавать целые виртуальные миры, игры
           и приложения, поддерживающие данные технологии.
         </template>
       </TextLine>
     </section>
 
     <section class="site-wrap">
-      <img src="../assets/First.svg" class="section-image" />
+      <img src="../assets/First.svg" class="section-image"/>
     </section>
 
     <section class="text-wrap">
       <TextLine>
-        <template v-slot:header> 2 СМЕНА </template>
+        <template v-slot:header>2 СМЕНА</template>
 
         <template v-slot:date>
           с 13 июня
-          <br />
+          <br/>
           по 24 июня
         </template>
 
         <template v-slot:description>
-          Коллаж - техника, в которой сочетаются навыки рисования, лепки, вырезания, оцениваются основы колористики, графики и дизайна. Развивает
+          Коллаж - техника, в которой сочетаются навыки рисования, лепки, вырезания, оцениваются основы колористики,
+          графики и дизайна. Развивает
           креативность и мелкую моторику.
-          <br />
-          <br />
-          Гитара для начинающих – ребенок научится базовым аккордам и техникам игры, играть по табулатурам, узнает как располагаются ноты на грифе
+          <br/>
+          <br/>
+          Гитара для начинающих – ребенок научится базовым аккордам и техникам игры, играть по табулатурам, узнает как
+          располагаются ноты на грифе
         </template>
       </TextLine>
     </section>
 
     <section class="site-wrap">
-      <img src="../assets/Second.svg" class="section-image" />
+      <img src="../assets/Second.svg" class="section-image"/>
     </section>
 
     <section class="text-wrap">
       <TextLine>
-        <template v-slot:header> 3 СМЕНА </template>
+        <template v-slot:header>3 СМЕНА</template>
 
         <template v-slot:date>
           с 27 июня
-          <br />
+          <br/>
           по 8 июля
         </template>
 
         <template v-slot:description>
-          Актерское мастерство - в рамках курса ваш ребенок сможет: - обрести чувство уверенности в себе, избавиться от боязни сцены; - научится
+          Актерское мастерство - в рамках курса ваш ребенок сможет: - обрести чувство уверенности в себе, избавиться от
+          боязни сцены; - научится
           работать с дикцией, мимикой, пластикой, жестами, позами;
-          <br />
-          <br />
-          Гитара для начинающих – ребенок научится базовым аккордам и техникам игры, играть по табулатурам, узнает как располагаются ноты на грифе
+          <br/>
+          <br/>
+          Гитара для начинающих – ребенок научится базовым аккордам и техникам игры, играть по табулатурам, узнает как
+          располагаются ноты на грифе
         </template>
       </TextLine>
     </section>
 
     <section class="site-wrap">
-      <img src="../assets/Third.svg" class="section-image" />
+      <img src="../assets/Third.svg" class="section-image"/>
     </section>
 
     <button v-if="eventUser.event.id !== 0" class="unsubscribe" @click="Unsubscribe">ОТПИСАТЬСЯ</button>
@@ -106,50 +112,60 @@ export default Vue.extend({
         startDate: new Date(1, 6, 2022),
         endDate: new Date(1, 7, 2022)
       }),
-      eventUser: new EventUser(), 
+      eventUser: new EventUser(),
     };
   },
-  
+
   computed: {
-    isAuthorize() : boolean {
+    isAuthorize(): boolean {
       return this.$store.state.client.id != 0;
     }
   },
-  
+
   methods: {
     async Subscribe() {
+      this.$store.state.isLoading = true;
+
       const response = (await ClientService.getCurrentUser()) as any;
 
-      if(response){
+      if (response) {
         const user = new Client(response.data.data);
         const eventUser = new EventUser({event: this.event, client: user, id: 0});
 
         const result = await EventUserService.SignUpEvent(eventUser) as any;
 
-        if(result.data.isSuccessful) {
+        if (result.data.isSuccessful) {
           this.eventUser = new EventUser(result.data.data);
         }
+      } else {
+        await this.$router.push("/authorize");
       }
-      else {
-        this.$router.push("/authorize");
-      }
+
+      this.$store.state.isLoading = false;
     },
 
     async Unsubscribe() {
+      this.$store.state.isLoading = true;
+
       const response = await EventUserService.DeleteEventUser(this.event.id) as any;
-      
-      if(response.data.isSuccessful){
+
+      if (response.data.isSuccessful) {
         this.eventUser = new EventUser();
       }
+
+      this.$store.state.isLoading = false;
     }
   },
-  
+
   async mounted() {
-      const response = await EventUserService.GetAllEvent(this.$store.state.client.id);
-      if(response.data.isSuccessful){
-        const eventUsers = response.data.data as EventUser[];
-        this.eventUser = eventUsers.find(x => x.event.id == this.event.id) ?? new EventUser();
-      }
+    this.$store.state.isLoading = true;
+    const response = await EventUserService.GetAllEvent(this.$store.state.client.id);
+    if (response.data.isSuccessful) {
+      const eventUsers = response.data.data as EventUser[];
+      this.eventUser = eventUsers.find(x => x.event.id == this.event.id) ?? new EventUser();
+    }
+
+    this.$store.state.isLoading = false;
   }
 });
 </script>
@@ -173,16 +189,19 @@ export default Vue.extend({
     padding: 60px 30px;
   }
 }
+
 @media (min-width: 768px) and (max-width: 991px) {
   .site-wrap {
     padding: 60px 100px;
   }
 }
+
 @media (min-width: 991px) and (max-width: 1199px) {
   .site-wrap {
     padding: 60px 200px;
   }
 }
+
 @media (min-width: 1200px) {
   .site-wrap {
     padding: 60px 300px;

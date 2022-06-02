@@ -38,7 +38,7 @@ export default Vue.extend({
 
       if (y > heightSection && this.y + this.height == heightSection) return;
 
-      var k = (heightSection - this.imageHeight) / heightSection;
+      let k = (heightSection - this.imageHeight) / heightSection;
       this.height = k * y + this.imageHeight;
 
       k = (widthSection - this.imageHeight) / heightSection;
@@ -52,7 +52,7 @@ export default Vue.extend({
   mounted() {
     document.onreadystatechange = () => {
       if (document.readyState == "complete") {
-        var height = document.getElementById("preview-image")?.clientHeight;
+        const height = document.getElementById("preview-image")?.clientHeight;
 
         this.imageHeight = height ?? 650;
         this.height = height ?? 650;
@@ -61,7 +61,7 @@ export default Vue.extend({
       }
     };
 
-    var height = document.getElementById("preview-image")?.clientHeight;
+    const height = document.getElementById("preview-image")?.clientHeight;
 
     this.imageHeight = height ?? 650;
     this.height = height ?? 650;
@@ -72,7 +72,7 @@ export default Vue.extend({
     window.addEventListener(
       "resize",
       () => {
-        var height = document.getElementById("preview-image")?.clientHeight;
+        const height = document.getElementById("preview-image")?.clientHeight;
 
         this.imageHeight = height ?? 650;
         this.height = height ?? 650;

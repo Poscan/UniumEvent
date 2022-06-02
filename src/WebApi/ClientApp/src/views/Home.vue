@@ -27,11 +27,15 @@ export default Vue.extend({
 
   methods: {
     async loadUser() {
+      this.$store.state.isLoading = true;
+      
       const response = (await ClientService.getCurrentUser()) as any;
 
       if (response.data) {
         this.$store.state.client = new Client(response.data.data);
       }
+
+      this.$store.state.isLoading = false;
     }
   },
   

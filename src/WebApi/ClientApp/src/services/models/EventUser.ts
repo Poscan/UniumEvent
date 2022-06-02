@@ -18,8 +18,8 @@ export default class EventUser implements IEventUser {
   ) {
     this.id = eventUser.id;
     
-    this.client = eventUser.client;
-    this.event = eventUser.event;
+    this.client = new Client(eventUser.client);
+    this.event = new Event(eventUser.event);
   }
 
   id: number;

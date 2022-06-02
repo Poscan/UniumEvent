@@ -58,7 +58,7 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
-@import "../../public/main";
+@import "@/../public/main";
 
 .button-edit {
   padding: 10px;

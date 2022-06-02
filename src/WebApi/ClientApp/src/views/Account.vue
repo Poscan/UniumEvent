@@ -1,9 +1,7 @@
 <template>
   <div class="account-wrap">
     <div class="account-info m-label">
-      <transition name="fade">
         <router-view />
-      </transition>
     </div>
 
     <div>
@@ -24,7 +22,6 @@
           Информация о пользователе
         </router-link>
         <router-link
-          hidden
           to="/account/user-events"
           :class="['account-sidebar-item', 'l-label', { select: $router.currentRoute.path === '/account/user-events' }]"
         >
@@ -48,12 +45,15 @@ export default Vue.extend({
   },
 
   async mounted() {
-    var client = (await ClientService.getCurrentUser()) as any;
+    this.$store.state.isLoading = true;
+    const client = (await ClientService.getCurrentUser()) as any;
 
     if (client.data) {
       this.client = new Client(client.data.data);
       this.$store.state.client = this.client;
     }
+
+    this.$store.state.isLoading = false;
   },
 });
 </script>

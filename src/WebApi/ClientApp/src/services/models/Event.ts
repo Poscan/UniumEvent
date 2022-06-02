@@ -21,8 +21,8 @@ export default class Event implements IEvent {
     
     this.name = event.name;
     this.pageName = event.pageName;
-    this.startDate = event.startDate;
-    this.endDate = event.endDate;
+    this.startDate = new Date(event.startDate);
+    this.endDate = new Date(event.endDate);
   }
 
   id: number;

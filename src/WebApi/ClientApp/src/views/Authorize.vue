@@ -88,7 +88,7 @@ export default Vue.extend({
 
   computed: {
     isNextStep(): boolean {
-      var result = this.login.length > 0 && this.password.length > 0;
+      let result = this.login.length > 0 && this.password.length > 0;
 
       if (!this.isAuthorize) {
         result = result && this.lastName.length > 0 && this.firstName.length > 0;
@@ -100,7 +100,9 @@ export default Vue.extend({
 
   methods: {
     async authorize() {
-      var result = null;
+      this.$store.state.isLoading = true;
+      
+      let result = null;
       if (this.isAuthorize) {
         result = (await AuthService.login(this.login, this.password)) as any;
 
@@ -115,8 +117,10 @@ export default Vue.extend({
         sessionStorage.setItem("accessToken", result.data.data.accessToken.token);
         sessionStorage.setItem("refreshToken", result.data.data.refreshToken.token);
 
-        this.$router.push("/account/user-profile");
+        await this.$router.push("/account/user-profile");
       }
+
+      this.$store.state.isLoading = false;
     },
   },
 
