@@ -18,11 +18,11 @@ public class AuthenticationService : IAuthenticationService
     {
         var user = await _userManager.FindByNameAsync(userName);
         if (user == null)
-            throw new ApiException("Неверный логин или пароль");
+            throw new ApiException("РќРµРІРµСЂРЅС‹Р№ Р»РѕРіРёРЅ РёР»Рё РїР°СЂРѕР»СЊ");
         
         var passwordIsCorrect = await _userManager.CheckPasswordAsync(user, password);
         if (passwordIsCorrect == false)
-            throw new ApiException("Неверный логин или пароль");
+            throw new ApiException("РќРµРІРµСЂРЅС‹Р№ Р»РѕРіРёРЅ РёР»Рё РїР°СЂРѕР»СЊ");
 
         return new AuthenticationData(user.Id);
     }
