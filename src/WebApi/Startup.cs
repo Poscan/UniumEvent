@@ -29,6 +29,7 @@ public class Startup
         services.AddHttpContextAccessor();
         services.AddSingleton<ICurrentUser, CurrentUser>();
         services.AddSingleton<IAuthorizationMiddlewareResultHandler, CustomAuthorizationMiddlewareResultHandler>();
+        services.AddSpaStaticFiles(configuration => configuration.RootPath = "wwwroot");
     }
     
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -45,10 +46,16 @@ public class Startup
         app.UseHttpsRedirection();
         app.UseDefaultFiles();
         app.UseStaticFiles();
+        app.UseSpaStaticFiles();
 
         app.UseRouting();
         app.UseAuthentication();
         app.UseAuthorization();
         app.UseEndpoints(endpoints => endpoints.MapControllers());
+        
+        app.UseSpa(spa =>
+        {
+            spa.Options.SourcePath = "wwwroot";
+        });
     }
 }

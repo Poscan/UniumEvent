@@ -23,6 +23,7 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
         modelBuilder.ApplyConfiguration(new EventConfiguration());
         modelBuilder.ApplyConfiguration(new EventUserConfiguration());
         modelBuilder.ApplyConfiguration(new StatusConfiguration());
+        modelBuilder.ApplyConfiguration(new RoleConfiguration());
 
         base.OnModelCreating(modelBuilder);
     }

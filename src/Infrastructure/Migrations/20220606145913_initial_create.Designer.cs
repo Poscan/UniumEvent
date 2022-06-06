@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220602151904_seeds data status and event")]
-    partial class seedsdatastatusandevent
+    [Migration("20220606145913_initial_create")]
+    partial class initial_create
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -206,6 +206,32 @@ namespace Infrastructure.Migrations
                         .HasDatabaseName("RoleNameIndex");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "a5ece00f-ffd9-4dd0-a433-5e69ecf78285",
+                            ConcurrencyStamp = "a9831ff4-6dda-4532-945a-074537b66a58",
+                            Name = "Ученик"
+                        },
+                        new
+                        {
+                            Id = "837b0fdb-b27e-4a8b-a30e-8d4bf1ca2df2",
+                            ConcurrencyStamp = "5957ce05-e66f-42fc-8830-7d6811e3b2ac",
+                            Name = "Преподаватель"
+                        },
+                        new
+                        {
+                            Id = "d44d4995-edf0-420c-a16e-3ae2a58ee662",
+                            ConcurrencyStamp = "46de5ef3-93b8-456e-8135-ba658379adb9",
+                            Name = "Менеджер"
+                        },
+                        new
+                        {
+                            Id = "91e49b2e-7e74-464d-b065-2b1831658411",
+                            ConcurrencyStamp = "0158fdb6-a87e-419c-8a8c-72dc1e431b05",
+                            Name = "Руководитель"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
