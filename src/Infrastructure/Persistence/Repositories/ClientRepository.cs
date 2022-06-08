@@ -11,6 +11,20 @@ public class ClientRepository : Repository<Client>, IClientRepository
     {
     }
 
+    public async Task<IEnumerable<Client>> FindClientsAsync(string searchString)
+    {
+        var search = searchString.ToUpper().Trim().Split(" ");
+        return await DbSet.Where(x => (search.Length > 0 && (x.LastName.ToUpper().Contains(search[0]) ||
+                                                                    x.FirstName.ToUpper().Contains(search[0]))) ||
+                                             (search.Length > 1 && (x.LastName.ToUpper().Contains(search[0]) &&
+                                                                    x.FirstName.ToUpper().Contains(search[1]))) ||
+                                             (search.Length > 2 && (x.LastName.ToUpper().Contains(search[0]) &&
+                                                                    x.FirstName.ToUpper().Contains(search[1]) &&
+                                                                    x.PatrName != null &&
+                                                                    x.PatrName.ToUpper().Contains(search[2]))))
+            .OrderBy(x => x.LastName.ToUpper().Contains(search[0])).ToListAsync();
+    }
+
     public async Task<Client> CreateNew(Client client)
     {
         await DbSet.AddAsync(client);

@@ -246,10 +246,10 @@ namespace Infrastructure.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "837b0fdb-b27e-4a8b-a30e-8d4bf1ca2df2", "5957ce05-e66f-42fc-8830-7d6811e3b2ac", "Преподаватель", null },
-                    { "91e49b2e-7e74-464d-b065-2b1831658411", "0158fdb6-a87e-419c-8a8c-72dc1e431b05", "Руководитель", null },
-                    { "a5ece00f-ffd9-4dd0-a433-5e69ecf78285", "a9831ff4-6dda-4532-945a-074537b66a58", "Ученик", null },
-                    { "d44d4995-edf0-420c-a16e-3ae2a58ee662", "46de5ef3-93b8-456e-8135-ba658379adb9", "Менеджер", null }
+                    { "543bc9fc-7640-4bbe-b7a5-5ff98a4edc3c", "3795bc78-fbae-462b-a883-693fa36d7ce4", "Менеджер", "МЕНЕДЖЕР" },
+                    { "7780d983-95f8-47eb-9034-acbd549fd16c", "1316f960-9d7a-4d36-8739-b8abd2ced32e", "Руководитель", "РУКОВОДИТЕЛЬ" },
+                    { "adda99cb-7630-4237-8686-c62d8f514857", "3f41054f-6569-4ddd-91cd-9236ec0adec9", "Преподаватель", "ПРЕПОДАВАТЕЛЬ" },
+                    { "b2d7486e-c23a-4cfb-8acf-e413927b7682", "c731fd33-c4d4-4f05-af80-c5400a132de7", "Ученик", "УЧЕНИК" }
                 });
 
             migrationBuilder.InsertData(

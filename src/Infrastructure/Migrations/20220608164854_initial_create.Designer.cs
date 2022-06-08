@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220606145913_initial_create")]
+    [Migration("20220608164854_initial_create")]
     partial class initial_create
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -210,27 +210,31 @@ namespace Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "a5ece00f-ffd9-4dd0-a433-5e69ecf78285",
-                            ConcurrencyStamp = "a9831ff4-6dda-4532-945a-074537b66a58",
-                            Name = "Ученик"
+                            Id = "b2d7486e-c23a-4cfb-8acf-e413927b7682",
+                            ConcurrencyStamp = "c731fd33-c4d4-4f05-af80-c5400a132de7",
+                            Name = "Ученик",
+                            NormalizedName = "УЧЕНИК"
                         },
                         new
                         {
-                            Id = "837b0fdb-b27e-4a8b-a30e-8d4bf1ca2df2",
-                            ConcurrencyStamp = "5957ce05-e66f-42fc-8830-7d6811e3b2ac",
-                            Name = "Преподаватель"
+                            Id = "adda99cb-7630-4237-8686-c62d8f514857",
+                            ConcurrencyStamp = "3f41054f-6569-4ddd-91cd-9236ec0adec9",
+                            Name = "Преподаватель",
+                            NormalizedName = "ПРЕПОДАВАТЕЛЬ"
                         },
                         new
                         {
-                            Id = "d44d4995-edf0-420c-a16e-3ae2a58ee662",
-                            ConcurrencyStamp = "46de5ef3-93b8-456e-8135-ba658379adb9",
-                            Name = "Менеджер"
+                            Id = "543bc9fc-7640-4bbe-b7a5-5ff98a4edc3c",
+                            ConcurrencyStamp = "3795bc78-fbae-462b-a883-693fa36d7ce4",
+                            Name = "Менеджер",
+                            NormalizedName = "МЕНЕДЖЕР"
                         },
                         new
                         {
-                            Id = "91e49b2e-7e74-464d-b065-2b1831658411",
-                            ConcurrencyStamp = "0158fdb6-a87e-419c-8a8c-72dc1e431b05",
-                            Name = "Руководитель"
+                            Id = "7780d983-95f8-47eb-9034-acbd549fd16c",
+                            ConcurrencyStamp = "1316f960-9d7a-4d36-8739-b8abd2ced32e",
+                            Name = "Руководитель",
+                            NormalizedName = "РУКОВОДИТЕЛЬ"
                         });
                 });
 

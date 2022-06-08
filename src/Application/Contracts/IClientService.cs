@@ -5,6 +5,7 @@ namespace Application.Contracts;
 
 public interface IClientService
 {
+    Task<Response<IEnumerable<ClientDto>>> FindUserAsync(string searchString);
     Task<Response<ClientDto>> GetByUserIdAsync(CancellationToken cancellationToken);
     Task<Response<ClientDto>> GetAsync(int clientId, CancellationToken cancellationToken);
     Task<Response<IEnumerable<ClientDto>>> GetAllAsync(CancellationToken cancellationToken);

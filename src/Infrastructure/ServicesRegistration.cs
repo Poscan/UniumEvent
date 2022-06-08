@@ -24,6 +24,7 @@ public static class ServicesRegistration
         services.AddScoped<IAuthenticationService, AuthenticationService>();
         services.AddScoped<IAuthorizationService, AuthorizationService>();
         services.AddScoped<IAccountService, AccountService>();
+        services.AddScoped<IRoleService, RoleService>();
         
 #if DEBUG
         services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql("Server=localhost;Port=5432;Database=diploma;Username=poscan;Password=ad221100")

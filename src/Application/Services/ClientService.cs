@@ -24,6 +24,14 @@ public class ClientService : IClientService
     private readonly IMapper _mapper;
     private readonly ICurrentUser _currentUser;
 
+    public async Task<Response<IEnumerable<ClientDto>>> FindUserAsync(string searchString)
+    {
+        var clients = await _clientRepository.FindClientsAsync(searchString);
+
+        var clientsDto = _mapper.Map<IEnumerable<ClientDto>>(clients);
+        return Response.Success(clientsDto);
+    }
+
     public async Task<Response<ClientDto>> GetByUserIdAsync(CancellationToken cancellationToken)
     {
         var userId = _currentUser.UserId;

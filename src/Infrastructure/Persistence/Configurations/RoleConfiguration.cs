@@ -10,10 +10,10 @@ public class RoleConfiguration : IEntityTypeConfiguration<IdentityRole>
     {
         builder.ToTable("AspNetRoles").HasData(new List<IdentityRole>
         {
-            new IdentityRole("Ученик"),
-            new IdentityRole("Преподаватель"),
-            new IdentityRole("Менеджер"),
-            new IdentityRole("Руководитель")
+            new IdentityRole("Ученик") {NormalizedName = "УЧЕНИК"},
+            new IdentityRole("Преподаватель") {NormalizedName = "ПРЕПОДАВАТЕЛЬ"},
+            new IdentityRole("Менеджер") {NormalizedName = "МЕНЕДЖЕР"},
+            new IdentityRole("Руководитель") {NormalizedName = "РУКОВОДИТЕЛЬ"}
         });
     }
 }

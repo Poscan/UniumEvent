@@ -16,6 +16,12 @@ public class ClientController : ApiControllerBase
 
     private readonly IClientService _clientService;
 
+    [HttpGet("find")]
+    public async Task<ActionResult<IEnumerable<ClientDto>>> FindClients(string searchString)
+    {
+        return Ok( await _clientService.FindUserAsync(searchString));
+    }
+    
     [HttpGet("{id:int}")]
     public async Task<ActionResult<ClientDto>> GetClient([FromRoute] int id, CancellationToken cancellationToken)
     {

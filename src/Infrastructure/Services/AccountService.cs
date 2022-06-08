@@ -25,6 +25,7 @@ public class AccountService : IAccountService
         if (!result.Succeeded)
             return Response.Fail<AuthorizationData>(result.Errors.Select(x => new ResponseError(x.Description)));
 
+        await _userManager.AddToRoleAsync(user, "Ученик");
         var authorizationData = GetAuthorizationData(user.Id);
 
         return Response.Success(authorizationData);
