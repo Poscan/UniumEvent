@@ -6,6 +6,10 @@ export default {
     return await axios.get<IClient>("/api/Client/current-user");
   },
   
+  async findCliens(searchString: string) {
+    return await axios.get("/api/Client/find?searchString=" + searchString);
+  },
+  
   async SaveUser(client: IClient){
     return await axios.post("/api/Client", {
       "id": client.id,

@@ -37,6 +37,10 @@ const routes: Array<RouteConfig> = [
         path: "user-events",
         component: () => import("../views/UserEvents.vue"),
       },
+      {
+        path: "edit-users",
+        component: () => import("../views/EditUsers.vue"),
+      },
     ],
   },
 ];

@@ -27,6 +27,12 @@
         >
           События пользователя
         </router-link>
+        <router-link
+            to="/account/edit-users"
+            :class="['account-sidebar-item', 'l-label', { select: $router.currentRoute.path === '/account/edit-users' }]"
+        >
+          Модерация пользователей
+        </router-link>
       </div>
     </div>
   </div>
@@ -60,7 +66,7 @@ export default Vue.extend({
 
 <style lang="scss">
 .account-wrap {
-  margin: 130px 340px 0 340px;
+  margin: 130px 340px 30px 340px;
   display: grid;
   gap: 20px;
   grid-template-columns: auto 400px;
