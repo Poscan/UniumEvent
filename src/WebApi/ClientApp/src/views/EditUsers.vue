@@ -5,7 +5,8 @@
     </div>
 
     <div class="autocomplete mt-16">
-      <input id="autocomplete-input" class="m-label" ref="input" type="text" v-model="searchString" autocomplete="off"
+      <input class="autocomplete-input m-label" ref="input" type="text" v-model="searchString"
+             autocomplete="off"
              placeholder="Введите фио пользователя"
              @focusin="input = true" @focusout.passive="focusout">
       <div id="autocomplete-list" :style="{width: width - 4+ 'px'}" v-if="input && searchString.length > 0">
@@ -53,6 +54,16 @@
         <EditInput v-model="editClient.parentMobilePhone" placeholder="+7 (922) 222 22-22"/>
       </div>
 
+      <div class="h-label">Роль пользователя</div>
+      <div class="account-info-grid">
+        <div class="account-info-column-right">Телефон:</div>
+        <select v-model="editClientRole" class="m-label select">
+          <option v-for="role in roles" :key="role.roleId" :value="role" class="m-labe select-item">
+            {{ role.roleName }}
+          </option>
+        </select>
+      </div>
+
       <div class="flex-justify-content-end">
         <div class="button-save" @click="SaveClient">
           сохранить
@@ -78,6 +89,8 @@ export default Vue.extend({
       data() {
         return {
           editClient: new Client(),
+          clientRole: new Role(),
+          editClientRole: new Role(),
           clients: new Array<Client>(),
           roles: new Array<Role>(),
           searchString: "",
@@ -91,15 +104,17 @@ export default Vue.extend({
           this.$store.state.isLoading = true;
 
           const result = await ClientService.SaveUser(this.editClient) as any;
-          if (result?.data.data) {
-            await this.$router.push("/account/user-profile");
+          
+          if(this.editClientRole.roleId !== this.clientRole.roleId) {
+            await RoleService.deleteUserRole(this.editClient.userId, this.clientRole.roleId);
+            await RoleService.addUserRole(this.editClient.userId, this.editClientRole.roleId);
           }
 
           this.$store.state.isLoading = false;
         },
 
-        async FindClient() {
-          const result = await ClientService.findCliens(this.searchString);
+        async FindClient(searchString: string) {
+          const result = await ClientService.findCliens(searchString);
 
           if (result?.data.isSuccessful) {
             this.clients = result.data.data.map((x: IClient) => new Client(x));
@@ -118,6 +133,15 @@ export default Vue.extend({
         async focusout() {
           await this.sleep(200);
           this.input = false;
+        },
+
+        async fetchUserRole(userId: string) {
+          const result = await RoleService.getUserRole(userId);
+
+          if (result?.data.isSuccessful) {
+            this.clientRole = new Role(result.data.data[0]);
+            this.editClientRole = new Role(result.data.data[0]);
+          }
         }
       },
 
@@ -129,7 +153,7 @@ export default Vue.extend({
         if (result?.data.isSuccessful) {
           this.roles = result.data.data.map((x: IRole) => new Role(x));
         }
-        
+
         const input = this.$refs.input;
         input?.focus();
         const size = input?.getBoundingClientRect();
@@ -140,8 +164,14 @@ export default Vue.extend({
 
       watch: {
         searchString(newValue: string) {
-          this.FindClient();
+          if(newValue.length > 0) {
+            this.FindClient(newValue);
+          }
         },
+
+        editClient(newValue: IClient) {
+          this.fetchUserRole(newValue.userId);
+        }
       }
     }
 );
@@ -171,14 +201,21 @@ export default Vue.extend({
 }
 
 .autocomplete {
-  #autocomplete-input {
+  .autocomplete-input {
     padding: 10px;
+    border: 2px solid #ddd;
     border-radius: 3px;
     width: calc(100% - 22px);
+
+    &:active, &:focus {
+      border: 2px solid #ddd;
+      border-radius: 3px;
+    }
   }
 
   #autocomplete-list {
-    border: 2px solid black;
+    border: 2px solid #ddd;
+    border-radius: 3px;
     position: absolute;
     z-index: 999999;
     margin-top: -2px;
@@ -196,6 +233,16 @@ export default Vue.extend({
       cursor: pointer;
     }
   }
+}
+
+.select {
+  padding: 3px 10px;
+  border: 2px solid #ddd;
+  border-radius: 3px;
+}
+
+.select-item {
+  padding: 3px 10px;
 }
 
 </style>

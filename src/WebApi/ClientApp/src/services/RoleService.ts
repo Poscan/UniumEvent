@@ -16,7 +16,7 @@ export default {
         return await axios.delete("/api/Role", {data: {userId: userId, roleId: roleId}});
     },
 
-    async createAccount(userId: string) {
+    async getUserRole(userId: string) {
         return await axios.get("/api/Role/user?userId=" + userId);
     },
 };
