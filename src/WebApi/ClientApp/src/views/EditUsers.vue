@@ -12,7 +12,7 @@
       <div id="autocomplete-list" :style="{width: width - 4+ 'px'}" v-if="input && searchString.length > 0">
         <div v-if="clients.length > 0">
           <div v-for="client in clients" :key="client.id" class="m-label autocomplete-list-item"
-               @click.stop="selectClient(client)">
+               @click.prevent.stop="selectClient(client)">
             {{ client.lastName }}
             {{ client.firstName }}
             {{ client.patrName }}
@@ -56,7 +56,7 @@
 
       <div class="h-label">Роль пользователя</div>
       <div class="account-info-grid">
-        <div class="account-info-column-right">Телефон:</div>
+        <div class="account-info-column-right">Роль:</div>
         <select v-model="editClientRole" class="m-label select">
           <option v-for="role in roles" :key="role.roleId" :value="role" class="m-labe select-item">
             {{ role.roleName }}
@@ -103,7 +103,7 @@ export default Vue.extend({
         async SaveClient() {
           this.$store.state.isLoading = true;
 
-          const result = await ClientService.SaveUser(this.editClient) as any;
+          await ClientService.SaveUser(this.editClient);
           
           if(this.editClientRole.roleId !== this.clientRole.roleId) {
             await RoleService.deleteUserRole(this.editClient.userId, this.clientRole.roleId);
@@ -197,7 +197,7 @@ export default Vue.extend({
 
 .flex-justify-content-end {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .autocomplete {

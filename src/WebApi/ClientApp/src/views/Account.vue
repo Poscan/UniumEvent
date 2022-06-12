@@ -33,6 +33,12 @@
         >
           Модерация пользователей
         </router-link>
+        <router-link
+            to="/account/edit-events"
+            :class="['account-sidebar-item', 'l-label', { select: $router.currentRoute.path === '/account/edit-events' }]"
+        >
+          Модерация мероприятий
+        </router-link>
       </div>
     </div>
   </div>

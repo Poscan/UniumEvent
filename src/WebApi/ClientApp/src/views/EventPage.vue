@@ -1,6 +1,7 @@
 <template>
   <div class="event-page">
     <preview-section :pictureUrl="image" label="ГОРОДСКАЯ АКАДЕМИЯ ЮНИУМ"/>
+    <img src="@/assets/MiniArrow.svg" height="20px" class="mini-arrow">
     <section class="text-wrap" id="first">
       <TextLine>
         <template v-slot:header>1 СМЕНА</template>
@@ -174,6 +175,13 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 @import "../../public/main";
+
+.mini-arrow {
+  position: absolute;
+  top: 95vh;
+  left: 50%;
+  transform: translateX(-50%);
+}
 
 .event-page {
   background: rgb(245, 245, 245);
