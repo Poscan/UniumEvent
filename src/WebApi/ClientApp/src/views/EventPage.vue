@@ -198,11 +198,19 @@ export default Vue.extend({
   .site-wrap {
     padding: 60px 30px;
   }
+  
+  .subscribe {
+    padding: 5px 10px;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
   .site-wrap {
     padding: 60px 100px;
+  }
+
+  .subscribe {
+    padding: 7px 15px;
   }
 }
 
@@ -210,11 +218,19 @@ export default Vue.extend({
   .site-wrap {
     padding: 60px 200px;
   }
+
+  .subscribe {
+    padding: 10px 20px;
+  }
 }
 
 @media (min-width: 1200px) {
   .site-wrap {
     padding: 60px 300px;
+  }
+
+  .subscribe {
+    padding: 10px 20px;
   }
 }
 
@@ -245,12 +261,12 @@ pre {
   position: fixed;
   right: 20px;
   bottom: 20px;
-  padding: 10px 20px;
   color: $green;
-  font-size: 32px;
+  font-size: calc((100vw - 480px) / (1904 - 480) * (32 - 16) + 16px);;
   border: 3px $green solid;
   border-radius: 3px;
   transition: 0.4s ease-out;
+  background: transparent;
 
   &:hover {
     background-color: $primary;

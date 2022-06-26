@@ -3,7 +3,7 @@
     <div class="card-container center">
       <img class="event-image" :src="pictureName" />
       <transition name="sub-anim2">
-        <div v-if="show" class="image-container">
+        <div v-show="show" class="image-container">
           <img class="event-image" id="sub" :src="subPictureName" />
         </div>
       </transition>

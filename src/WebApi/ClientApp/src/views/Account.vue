@@ -1,44 +1,46 @@
 <template>
   <div class="account-wrap">
-    <div class="account-info m-label">
-        <router-view />
-    </div>
-
-    <div>
-      <div class="account-card">
-        <div class="h-label">
-          {{ client.lastName }}<br />
-          {{ client.firstName }}
-        </div>
-        <div><img src="../assets/ManAvatar.svg" class="avatar" /></div>
+    <div class="account-content">
+      <div class="account-info m-label">
+        <router-view/>
       </div>
-      <br />
-      <div class="account-sidebar">
-        <router-link
-          to="/account/user-profile"
-          :class="['account-sidebar-item', 'l-label', { select: $router.currentRoute.path === '/account/user-profile' || 
+
+      <div>
+        <div class="account-card">
+          <div class="h-label">
+            {{ client.lastName }}<br/>
+            {{ client.firstName }}
+          </div>
+          <div><img src="../assets/ManAvatar.svg" class="avatar"/></div>
+        </div>
+        <br/>
+        <div class="account-sidebar">
+          <router-link
+              to="/account/user-profile"
+              :class="['account-sidebar-item', 'l-label', { select: $router.currentRoute.path === '/account/user-profile' || 
                                                                 $router.currentRoute.path === '/account/edit-user-profile'  }]"
-        >
-          Информация о пользователе
-        </router-link>
-        <router-link
-          to="/account/user-events"
-          :class="['account-sidebar-item', 'l-label', { select: $router.currentRoute.path === '/account/user-events' }]"
-        >
-          События пользователя
-        </router-link>
-        <router-link
-            to="/account/edit-users"
-            :class="['account-sidebar-item', 'l-label', { select: $router.currentRoute.path === '/account/edit-users' }]"
-        >
-          Модерация пользователей
-        </router-link>
-        <router-link
-            to="/account/edit-events"
-            :class="['account-sidebar-item', 'l-label', { select: $router.currentRoute.path === '/account/edit-events' }]"
-        >
-          Модерация мероприятий
-        </router-link>
+          >
+            Информация о пользователе
+          </router-link>
+          <router-link
+              to="/account/user-events"
+              :class="['account-sidebar-item', 'l-label', { select: $router.currentRoute.path === '/account/user-events' }]"
+          >
+            События пользователя
+          </router-link>
+          <router-link
+              to="/account/edit-users"
+              :class="['account-sidebar-item', 'l-label', { select: $router.currentRoute.path === '/account/edit-users' }]"
+          >
+            Модерация пользователей
+          </router-link>
+          <router-link
+              to="/account/edit-events"
+              :class="['account-sidebar-item', 'l-label', { select: $router.currentRoute.path === '/account/edit-events' }]"
+          >
+            Модерация мероприятий
+          </router-link>
+        </div>
       </div>
     </div>
   </div>
@@ -72,10 +74,47 @@ export default Vue.extend({
 
 <style lang="scss">
 .account-wrap {
-  margin: 130px 340px 30px 340px;
-  display: grid;
-  gap: 20px;
-  grid-template-columns: auto 400px;
+  display: flex;
+  justify-content: center;
+}
+
+.account-content {
+  margin: 130px 0;
+}
+
+@media (max-width: 768px) {
+  .account-content {
+    margin: 130px 30px 30px 30px;
+    width: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+}
+
+@media (min-width: 768px) {
+  .account-content {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .account-content {
+    width: 690px;
+  }
+}
+
+@media (min-width: 991px) and (max-width: 1199px) {
+  .account-content {
+    width: 915px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .account-content {
+    width: 1125px;
+  }
 }
 
 .account-sidebar {
@@ -85,6 +124,7 @@ export default Vue.extend({
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  margin-bottom: 20px;
 }
 
 .account-sidebar-item {
@@ -105,8 +145,8 @@ export default Vue.extend({
 .account-info-grid {
   display: grid;
   gap: 20px 20px;
-  grid-template-columns: 200px auto;
-  margin: 20px 0;
+  grid-template-columns: auto 1fr;
+  margin: 20px 20px;
 }
 
 .account-info-column-right {
@@ -125,7 +165,7 @@ export default Vue.extend({
 }
 
 .avatar {
-  --height: 150px;
+  --height: calc((100vw - 480px) / (1904 - 480) * (150 - 75) + 75px);
   margin-top: calc(-1 * ((var(--height) / 2)));
   margin-right: calc(-1 * ((var(--height) / 2)));
   border-radius: 50%;
