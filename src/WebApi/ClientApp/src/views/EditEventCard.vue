@@ -47,8 +47,8 @@ export default Vue.extend({
       
       const result = await EventUserService.GetAllUsers(this.event?.id);
 
-      if (result?.data.isSuccessful) {
-        this.users = result.data.data.map((x: IEventUser) => new Client(x.client));
+      if (result.isSuccessful) {
+        this.users = result.data?.map((x: IEventUser) => new Client(x.client)) ?? new Array<Client>();
       }
 
       this.$store.state.isLoading = false;

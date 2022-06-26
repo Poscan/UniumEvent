@@ -1,17 +1,18 @@
-import axios from "axios";
 import { IClient } from "./models/Client";
+import httpClient from "@/services/HttpClient";
+import {IResponse} from "@/services/models/Response";
 
 export default {
-  async getCurrentUser() {
-    return await axios.get<IClient>("/api/Client/current-user");
+  async getCurrentUser() : Promise<IResponse<IClient, string>> {
+    return await httpClient.get("/api/Client/current-user");
   },
   
-  async findCliens(searchString: string) {
-    return await axios.get("/api/Client/find?searchString=" + searchString);
+  async findClients(searchString: string) : Promise<IResponse<IClient[], string>> {
+    return await httpClient.get("/api/Client/find?searchString=" + searchString);
   },
   
-  async SaveUser(client: IClient){
-    return await axios.post("/api/Client", {
+  async SaveUser(client: IClient) : Promise<IResponse<any, string>> {
+    return await httpClient.post("/api/Client", {
       "id": client.id,
       "userId": client.userId,
       "lastName": client.lastName,
@@ -25,16 +26,6 @@ export default {
       "parentFirstName": client.parentFirstName,
       "parentPatrName": client.parentPatrName,
       "parentMobilePhone": client.parentMobilePhone
-    });
-  },
-
-  async createAccount(login: string, password: string, lastName: string, firstName: string, patrName: string) {
-    return await axios.post("/api/Account", {
-      userName: login,
-      password: password,
-      lastName: lastName,
-      firstName: firstName,
-      patrName: patrName,
     });
   },
 };

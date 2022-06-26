@@ -43,10 +43,10 @@ export default Vue.extend({
       async mounted() {
         this.$store.state.isLoading = true;
 
-        const result = await EventService.GetAllEvents() as any;
+        const result = await EventService.GetAllEvents();
 
-        if (result?.data.isSuccessful) {
-          this.events = result.data.data.map((x: IEvent) => new Event(x));
+        if (result.isSuccessful) {
+          this.events = result.data?.map((x: IEvent) => new Event(x)) ?? new Array<Event>();
         }
 
         this.$store.state.isLoading = false;

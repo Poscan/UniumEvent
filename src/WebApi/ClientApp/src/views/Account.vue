@@ -58,10 +58,10 @@ export default Vue.extend({
 
   async mounted() {
     this.$store.state.isLoading = true;
-    const client = (await ClientService.getCurrentUser()) as any;
+    const client = await ClientService.getCurrentUser();
 
-    if (client?.data) {
-      this.client = new Client(client.data.data);
+    if (client.isSuccessful) {
+      this.client = new Client(client.data);
       this.$store.state.client = this.client;
     }
 

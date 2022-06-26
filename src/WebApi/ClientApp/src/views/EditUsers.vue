@@ -114,10 +114,10 @@ export default Vue.extend({
         },
 
         async FindClient(searchString: string) {
-          const result = await ClientService.findCliens(searchString);
+          const result = await ClientService.findClients(searchString);
 
-          if (result?.data.isSuccessful) {
-            this.clients = result.data.data.map((x: IClient) => new Client(x));
+          if (result.isSuccessful) {
+            this.clients = result.data?.map((x: IClient) => new Client(x)) ?? new Array<Client>();
           }
         },
 
@@ -138,9 +138,10 @@ export default Vue.extend({
         async fetchUserRole(userId: string) {
           const result = await RoleService.getUserRole(userId);
 
-          if (result?.data.isSuccessful) {
-            this.clientRole = new Role(result.data.data[0]);
-            this.editClientRole = new Role(result.data.data[0]);
+          if (result.isSuccessful) {
+            const role = result.data ? new Role(result.data[0]) : new Role();
+            this.clientRole = role;
+            this.editClientRole = role;
           }
         }
       },
@@ -148,10 +149,10 @@ export default Vue.extend({
       async mounted() {
         this.$store.state.isLoading = true;
 
-        const result = await RoleService.getRoles() as any;
+        const result = await RoleService.getRoles();
 
-        if (result?.data.isSuccessful) {
-          this.roles = result.data.data.map((x: IRole) => new Role(x));
+        if (result.isSuccessful) {
+          this.roles = result.data?.map((x: IRole) => new Role(x)) ?? new Array<Role>();
         }
 
         const input = this.$refs.input;

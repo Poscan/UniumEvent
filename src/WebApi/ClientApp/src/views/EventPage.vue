@@ -94,7 +94,7 @@ import image from "../assets/Gau.svg";
 import Event from "@/services/models/Event";
 import ClientService from "@/services/ClientService";
 import EventUserService from "@/services/EventUserService";
-import EventUser from "@/services/models/EventUser";
+import EventUser, {IEventUser} from "@/services/models/EventUser";
 import Client from "@/services/models/Client";
 
 export default Vue.extend({
@@ -127,16 +127,16 @@ export default Vue.extend({
     async Subscribe() {
       this.$store.state.isLoading = true;
 
-      const response = (await ClientService.getCurrentUser()) as any;
+      const response = await ClientService.getCurrentUser();
 
-      if (response) {
-        const user = new Client(response.data.data);
+      if (response.isSuccessful) {
+        const user = new Client(response.data);
         const eventUser = new EventUser({event: this.event, client: user, id: 0});
 
-        const result = await EventUserService.SignUpEvent(eventUser) as any;
+        const result = await EventUserService.SignUpEvent(eventUser);
 
-        if (result?.data.isSuccessful) {
-          this.eventUser = new EventUser(result.data.data);
+        if (result.isSuccessful) {
+          this.eventUser = new EventUser(result.data);
         }
       } else {
         await this.$router.push("/authorize");
@@ -148,9 +148,9 @@ export default Vue.extend({
     async Unsubscribe() {
       this.$store.state.isLoading = true;
 
-      const response = await EventUserService.DeleteEventUser(this.event.id) as any;
+      const response = await EventUserService.DeleteEventUser(this.event.id);
 
-      if (response?.data.isSuccessful) {
+      if (response.isSuccessful) {
         this.eventUser = new EventUser();
       }
 
@@ -163,8 +163,8 @@ export default Vue.extend({
     
     const response = await EventUserService.GetAllEvent(this.$store.state.client.id);
     
-    if (response?.data.isSuccessful) {
-      const eventUsers = response.data.data as EventUser[];
+    if (response.isSuccessful) {
+      const eventUsers = response.data?.map((x: IEventUser) => new EventUser(x)) ?? new Array<EventUser>();
       this.eventUser = eventUsers.find(x => x.event.id == this.event.id) ?? new EventUser();
     }
 

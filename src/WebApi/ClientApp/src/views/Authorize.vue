@@ -104,22 +104,22 @@ export default Vue.extend({
       
       let result = null;
       if (this.isAuthorize) {
-        result = (await AuthService.login(this.login, this.password)) as any;
-
-        this.error = result?.data.isSuccessful ? "" : result.data.Errors[0].Message;
+        result = await AuthService.login(this.login, this.password);
       } else {
-        result = (await AuthService.createAccount(this.login, this.password, this.lastName, this.firstName, this.patrName)) as any;
-
-        this.error = result?.data.isSuccessful ? "" : result.data.errors[0].message;
+        result = await AuthService.createAccount(this.login, this.password, this.lastName, this.firstName, this.patrName);
       }
 
-      if (result.data.isSuccessful) {
-        sessionStorage.setItem("accessToken", result.data.data.accessToken.token);
-        sessionStorage.setItem("refreshToken", result.data.data.refreshToken.token);
+
+      if (result.isSuccessful) {
+        sessionStorage.setItem("accessToken", result.data.accessToken.token);
+        sessionStorage.setItem("refreshToken", result.data.refreshToken.token);
 
         await this.$router.push("/account/user-profile");
       }
-
+      else {
+        this.error = result.error ? result.error : "";
+      }
+      
       this.$store.state.isLoading = false;
     },
   },

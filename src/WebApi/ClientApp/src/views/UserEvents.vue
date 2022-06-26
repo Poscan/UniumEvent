@@ -34,9 +34,9 @@ export default Vue.extend({
     async unsubscribe(eventId: number) {
       this.$store.state.isLoading = true;
       
-      const response = await EventUserService.DeleteEventUser(eventId) as any;
+      const response = await EventUserService.DeleteEventUser(eventId);
 
-      if (response?.data.isSuccessful) {
+      if (response.isSuccessful) {
         const index = this.eventUsers.findIndex(x => x.event.id == eventId);
         this.eventUsers.splice(index, 1);
       }
@@ -48,9 +48,11 @@ export default Vue.extend({
   async mounted() {
     this.$store.state.isLoading = true;
     const clientId = this.$store.state.client.id;
-    const response = await EventUserService.GetAllEvent(clientId) as any;
+    const response = await EventUserService.GetAllEvent(clientId);
 
-    this.eventUsers = response.data.data.map((x: IEventUser) => new EventUser(x));
+    if(response.isSuccessful) {
+      this.eventUsers = response.data?.map((x: IEventUser) => new EventUser(x)) ?? new Array<EventUser>();
+    }
 
     this.$store.state.isLoading = false;
   }
