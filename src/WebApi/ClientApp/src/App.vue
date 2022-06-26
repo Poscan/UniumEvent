@@ -53,7 +53,7 @@ export default Vue.extend({
 #nav {
   top: 40px;
   right: 40px;
-  position: fixed;
+  position: absolute;
   z-index: 999;
 }
 
@@ -86,7 +86,7 @@ export default Vue.extend({
 
 .logo {
   height: 86px;
-  position: fixed;
+  position: absolute;
   top: 20px;
   left: 40px;
   z-index: 999;
