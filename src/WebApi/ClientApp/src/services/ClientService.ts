@@ -22,6 +22,7 @@ export default {
       "email": client.email,
       "schoolNumber": client.schoolNumber,
       "birthday": client.birthday,
+      "sex": client.sex,
       "parentLastName": client.parentLastName,
       "parentFirstName": client.parentFirstName,
       "parentPatrName": client.parentPatrName,

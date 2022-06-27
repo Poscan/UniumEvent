@@ -12,4 +12,9 @@ export default new Vuex.Store({
   mutations: {},
   actions: {},
   modules: {},
+  getters: {
+    getClient(context) {
+      return context.client ?? new Client();
+    }
+  }
 });

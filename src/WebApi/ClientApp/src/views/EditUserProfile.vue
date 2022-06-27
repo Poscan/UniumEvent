@@ -21,6 +21,8 @@
       <EditInput v-model="client.email" placeholder="email@gmail.com" />
       <div class="account-info-column-right">Школа:</div>
       <EditInput v-model="client.schoolNumber" placeholder="1" />
+      <div class="account-info-column-right">Пол:</div>
+      <EditInput v-model="client.sex" placeholder="1" />
     </div>
 
     <div class="h-label">Информация о родителях</div>

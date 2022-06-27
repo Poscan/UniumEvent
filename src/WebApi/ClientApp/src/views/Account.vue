@@ -8,10 +8,10 @@
       <div>
         <div class="account-card">
           <div class="h-label">
-            {{ client.lastName }}<br/>
-            {{ client.firstName }}
+            {{ getClient.lastName }}<br/>
+            {{ getClient.firstName }}
           </div>
-          <div><img src="../assets/ManAvatar.svg" class="avatar"/></div>
+          <div><img :src="getClient.sex === 'Ж' ? GirlAvatar : ManAvatar" class="avatar"/></div>
         </div>
         <br/>
         <div class="account-sidebar">
@@ -50,12 +50,20 @@
 import ClientService from "@/services/ClientService";
 import Client from "@/services/models/Client";
 import Vue from "vue";
+import ManAvatar from "@/assets/ManAvatar.svg";
+import GirlAvatar from "@/assets/GirlAvatar.svg";
+import {mapGetters} from "vuex";
 
 export default Vue.extend({
   data() {
     return {
-      client: new Client(),
+      GirlAvatar: GirlAvatar,
+      ManAvatar: ManAvatar
     };
+  },
+  
+  computed: {
+    ...mapGetters(['getClient']),
   },
 
   async mounted() {
@@ -63,8 +71,7 @@ export default Vue.extend({
     const client = await ClientService.getCurrentUser();
 
     if (client.isSuccessful) {
-      this.client = new Client(client.data);
-      this.$store.state.client = this.client;
+      this.$store.state.client = new Client(client.data);
     }
 
     this.$store.state.isLoading = false;

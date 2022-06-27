@@ -23,6 +23,8 @@
       <div>{{ client.email }}</div>
       <div class="account-info-column-right">Школа:</div>
       <div>{{ client.schoolNumber }}</div>
+      <div class="account-info-column-right">Пол:</div>
+      <div>{{ client.sex }}</div>
     </div>
 
     <div class="h-label">Информация о родителях</div>
