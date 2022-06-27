@@ -1,12 +1,15 @@
 <template>
-  <input class="edit-input m-label" type="text" :value="value"  @input="$emit('input', $event.target.value)" :placeholder="placeholder" />
+  <div>
+    <input v-if="mask" class="edit-input m-label" v-mask="mask" type="text" :value="value"  @input="$emit('input', $event.target.value)" :placeholder="placeholder" />
+    <input v-else class="edit-input m-label" type="text" :value="value"  @input="$emit('input', $event.target.value)" :placeholder="placeholder" />
+  </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 
 export default Vue.extend({
-  props: ["value", "placeholder"],
+  props: ["value", "placeholder", "mask"],
 });
 </script>
 

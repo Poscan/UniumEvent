@@ -33,9 +33,9 @@
         <div class="account-info-column-right">Отчество:</div>
         <EditInput v-model="editClient.patrName" placeholder="Иванович"/>
         <div class="account-info-column-right">Дата рождения:</div>
-        <EditInput v-model="editClient.birthday" placeholder="01.01.1991"/>
+        <EditInput :mask="'##.##.####'" @input="(value) => updateDate(value)" v-model="dateString" placeholder="01.01.1991" />
         <div class="account-info-column-right">Телефон:</div>
-        <EditInput v-model="editClient.mobilePhone" placeholder="+7 (966) 666 66-66"/>
+        <EditInput :mask="'+7 (###) ### ##-##'" v-model="editClient.mobilePhone" placeholder="+7 (966) 666 66-66" />
         <div class="account-info-column-right">Email:</div>
         <EditInput v-model="editClient.email" placeholder="email@gmail.com"/>
         <div class="account-info-column-right">Школа:</div>
@@ -51,7 +51,7 @@
         <div class="account-info-column-right">Отчество:</div>
         <EditInput v-model="editClient.parentPatrName" placeholder="Петрович"/>
         <div class="account-info-column-right">Телефон:</div>
-        <EditInput v-model="editClient.parentMobilePhone" placeholder="+7 (922) 222 22-22"/>
+        <EditInput :mask="'+7 (###) ### ##-##'" v-model="editClient.parentMobilePhone" placeholder="+7 (922) 222 22-22"/>
       </div>
 
       <div class="h-label">Роль пользователя</div>
@@ -83,7 +83,7 @@ import EditInput from "@/components/EditInput.vue";
 
 export default Vue.extend({
       components: {
-        EditInput
+        EditInput,
       },
 
       data() {
@@ -96,6 +96,7 @@ export default Vue.extend({
           searchString: "",
           input: false,
           width: 0,
+          dateString: ""
         }
       },
 
@@ -123,12 +124,12 @@ export default Vue.extend({
 
         selectClient(client: Client) {
           this.editClient = client;
+          this.dateString = client && client.birthday ? new Date(client.birthday).toLocaleDateString() : "";
         },
 
         sleep(ms: number) {
           return new Promise(resolve => setTimeout(resolve, ms));
         },
-
 
         async focusout() {
           await this.sleep(200);
@@ -142,6 +143,15 @@ export default Vue.extend({
             const role = result.data ? new Role(result.data[0]) : new Role();
             this.clientRole = role;
             this.editClientRole = role;
+          }
+        },
+
+        updateDate(newValue: string) {
+          if(newValue.length === 10) {
+            const num = newValue.split('.');
+            const date = new Date(num[2] + '-' + num[1] + '-' + num[0] + 'T00:00:00Z');
+            this.editClient.birthday = date;
+            console.log(date);
           }
         }
       },

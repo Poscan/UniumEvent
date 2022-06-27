@@ -21,7 +21,7 @@ export default {
       "mobilePhone": client.mobilePhone,
       "email": client.email,
       "schoolNumber": client.schoolNumber,
-      "birthday": null,
+      "birthday": client.birthday,
       "parentLastName": client.parentLastName,
       "parentFirstName": client.parentFirstName,
       "parentPatrName": client.parentPatrName,

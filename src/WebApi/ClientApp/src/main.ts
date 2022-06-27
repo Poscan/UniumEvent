@@ -4,7 +4,10 @@ import App from "./App.vue";
 import router from "./router";
 import AuthService from "./services/AuthService";
 import store from "./store";
+// @ts-ignore
+import VueTheMask from 'vue-the-mask'
 
+Vue.use(VueTheMask);
 Vue.config.productionTip = false;
 
 const authService = AuthService;

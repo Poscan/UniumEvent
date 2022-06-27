@@ -81,8 +81,8 @@
       <img src="../assets/Third.svg" class="section-image"/>
     </section>
 
-    <button v-if="eventUser.event.id !== 0" class="unsubscribe" @click="Unsubscribe">ОТПИСАТЬСЯ</button>
-    <button v-else class="subscribe" @click="Subscribe">ЗАПИСАТЬСЯ</button>
+    <button v-if="eventUser.event.id !== 0" class="button-sub unsubscribe" @click="Unsubscribe">ОТПИСАТЬСЯ</button>
+    <button v-else class="button-sub subscribe" @click="Subscribe">ЗАПИСАТЬСЯ</button>
   </div>
 </template>
 
@@ -199,7 +199,7 @@ export default Vue.extend({
     padding: 60px 30px;
   }
   
-  .subscribe {
+  .button-sub {
     padding: 5px 10px;
   }
 }
@@ -209,7 +209,7 @@ export default Vue.extend({
     padding: 60px 100px;
   }
 
-  .subscribe {
+  .button-sub {
     padding: 7px 15px;
   }
 }
@@ -219,7 +219,7 @@ export default Vue.extend({
     padding: 60px 200px;
   }
 
-  .subscribe {
+  .button-sub {
     padding: 10px 20px;
   }
 }
@@ -229,7 +229,7 @@ export default Vue.extend({
     padding: 60px 300px;
   }
 
-  .subscribe {
+  .button-sub {
     padding: 10px 20px;
   }
 }
@@ -256,17 +256,8 @@ pre {
 }
 
 .subscribe {
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
   color: $green;
-  font-size: calc((100vw - 480px) / (1904 - 480) * (32 - 16) + 16px);;
   border: 3px $green solid;
-  border-radius: 3px;
-  transition: 0.4s ease-out;
-  background: transparent;
 
   &:hover {
     background-color: $primary;
@@ -275,21 +266,24 @@ pre {
   }
 }
 
-.unsubscribe {
+.button-sub {
+  background: transparent;
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   position: fixed;
   right: 20px;
   bottom: 20px;
-  padding: 10px 20px;
-  color: #888;
-  font-size: 32px;
-  border: 3px #888 solid;
+  font-size: calc((100vw - 480px) / (1904 - 480) * (32 - 16) + 16px);
   border-radius: 3px;
   transition: 0.4s ease-out;
+}
+
+.unsubscribe {
+  color: #888;
+  border: 3px #888 solid;
 
   &:hover {
-    background-color: $primary;
+    background-color: gray;
     border: 3px burlywood solid;
     color: burlywood;
   }

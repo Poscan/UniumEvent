@@ -14,9 +14,9 @@
       <div class="account-info-column-right">Отчество:</div>
       <EditInput v-model="client.patrName" placeholder="Иванович" />
       <div class="account-info-column-right">Дата рождения:</div>
-      <EditInput v-model="client.birthday" placeholder="01.01.1991" />
+      <EditInput :mask="'##.##.####'" @input="(value) => updateDate(value)" v-model="dateString" placeholder="01.01.1991" />
       <div class="account-info-column-right">Телефон:</div>
-      <EditInput v-model="client.mobilePhone" placeholder="+7 (966) 666 66-66" />
+      <EditInput :mask="'+7 (###) ### ##-##'" v-model="client.mobilePhone" placeholder="+7 (966) 666 66-66" />
       <div class="account-info-column-right">Email:</div>
       <EditInput v-model="client.email" placeholder="email@gmail.com" />
       <div class="account-info-column-right">Школа:</div>
@@ -32,7 +32,7 @@
       <div class="account-info-column-right">Отчество:</div>
       <EditInput v-model="client.parentPatrName" placeholder="Петрович" />
       <div class="account-info-column-right">Телефон:</div>
-      <EditInput v-model="client.parentMobilePhone" placeholder="+7 (922) 222 22-22" />
+      <EditInput :mask="'+7 (###) ### ##-##'" v-model="client.parentMobilePhone" placeholder="+7 (922) 222 22-22" />
     </div>
   </div>
 </template>
@@ -50,13 +50,8 @@ export default Vue.extend({
   
   data() {
     return {
-      client: new Client()
-    }
-  },
-
-  computed: {
-    localeDate(): string {
-      return this.client && this.client.birthday ? new Date(this.client.birthday).toLocaleDateString() : "";
+      client: new Client(),
+      dateString: ""
     }
   },
   
@@ -66,16 +61,31 @@ export default Vue.extend({
       
       const result = await ClientService.SaveUser(this.client);
       if(result.isSuccessful) {
+        const response = await ClientService.getCurrentUser();
+        
+        if(response.isSuccessful){
+          this.$store.state.client = new Client(response.data);
+        }
         await this.$router.push("/account/user-profile");
       }
 
       this.$store.state.isLoading = false;
+    },
+
+    updateDate(newValue: string) {
+      if(newValue.length === 10) {
+        const num = newValue.split('.');
+        const date = new Date(num[2] + '-' + num[1] + '-' + num[0] + 'T00:00:00Z');
+        this.client.birthday = date;
+        console.log(date);
+      }
     }
   },
   
   mounted() {
     const client = this.$store.state.client;
-    this.client = client ? client : new Client();
+    this.client = client ? new Client(client) : new Client();
+    this.dateString = this.client && this.client.birthday ? new Date(this.client.birthday).toLocaleDateString() : "";
   }
 });
 </script>
